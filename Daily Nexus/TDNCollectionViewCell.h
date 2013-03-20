@@ -2,8 +2,8 @@
 //  TDNCollectionViewCell.h
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/20/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  TDNCollectionViewCell is a subclass of UICollectionViewCell that displays a story title, byline,
+//  body and photo, if present, in a UICollectionView
 //
 
 #import <UIKit/UIKit.h>
