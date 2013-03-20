@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TDNArticleManager.h"
+#import "TDNCollectionViewCell.h"
 
-@interface TDNFrontPageViewController : UICollectionViewController
+@interface TDNFrontPageViewController : UICollectionViewController <TDNArticleManagerDelegate>
 
 @end

@@ -10,6 +10,8 @@
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
+		93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */; };
+		93B2A18D16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */; };
 		93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508416DEE94F00121B30 /* UIKit.framework */; };
 		93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
 		93C9508916DEE94F00121B30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508816DEE94F00121B30 /* CoreGraphics.framework */; };
@@ -48,6 +50,9 @@
 		93AB5D1216F904C100EF6A8A /* TDNArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticle.m; sourceTree = "<group>"; };
 		93AB5D1416F90CCF00EF6A8A /* TDNFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNFeedParser.h; sourceTree = "<group>"; };
 		93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNFeedParser.m; sourceTree = "<group>"; };
+		93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCollectionViewCell.h; sourceTree = "<group>"; };
+		93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCollectionViewCell.m; sourceTree = "<group>"; };
+		93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNCollectionViewLeftImageCell.xib; sourceTree = "<group>"; };
 		93C9508116DEE94F00121B30 /* Daily Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Nexus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C9508416DEE94F00121B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C9508616DEE94F00121B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -145,6 +150,8 @@
 				93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */,
 				93FB5CA916F9425C00D592B0 /* NSString+Additions.h */,
 				93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */,
+				93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */,
+				93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */,
 				93C9508B16DEE94F00121B30 /* Supporting Files */,
 			);
 			path = "Daily Nexus";
@@ -163,6 +170,7 @@
 				93C9509616DEE94F00121B30 /* Default.png */,
 				93C9509816DEE94F00121B30 /* Default@2x.png */,
 				93C9509A16DEE94F00121B30 /* Default-568h@2x.png */,
+				93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				93FB5CA116F932C800D592B0 /* Icon-72@2x.png in Resources */,
 				93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */,
 				93FB5CA816F93EFB00D592B0 /* white.png in Resources */,
+				93B2A18D16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +315,7 @@
 				93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */,
 				93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */,
 				93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */,
+				93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
