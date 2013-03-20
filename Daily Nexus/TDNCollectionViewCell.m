@@ -19,4 +19,12 @@
     [photo setClipsToBounds:YES];
 }
 
+- (void)prepareForReuse {
+    // Clear out everything before this cell gets reused in case its new value doesn't have one of these fields
+    self.title.text = @"";
+    self.byline.text = @"";
+    self.story.text = @"";
+    self.photo.image = nil;
+}
+
 @end

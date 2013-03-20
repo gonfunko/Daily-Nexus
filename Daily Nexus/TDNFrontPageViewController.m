@@ -70,8 +70,6 @@
     
     if ([article.images count] != 0) {
         cell.photo.image = [self.images objectForKey:[article.images objectAtIndex:0]];
-    } else {
-        cell.photo.image = nil;
     }
     
     return cell;
