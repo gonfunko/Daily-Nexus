@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TDNArticle.h"
+#import "TDNMultimediaParser.h"
 #import "NSString+Additions.h"
 
 @interface TDNFeedParser : NSObject <NSXMLParserDelegate>
