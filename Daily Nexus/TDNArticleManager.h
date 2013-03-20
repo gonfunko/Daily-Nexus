@@ -9,9 +9,20 @@
 #import "TDNFeedParser.h"
 #import "TDNArticle.h"
 
+@protocol TDNArticleManagerDelegate <NSObject>
+
+@optional
+- (void)articleManagerDidStartLoading;
+- (void)articleManagerDidFinishLoading;
+
+@end
+
 @interface TDNArticleManager : NSObject
 
 + (TDNArticleManager *)sharedManager;
 - (void)loadAllArticles;
+- (NSArray *)currentArticles;
+
+@property (retain) id <TDNArticleManagerDelegate> delegate;
 
 @end

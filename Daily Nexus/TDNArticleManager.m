@@ -18,6 +18,7 @@
 
 @synthesize articles;
 @synthesize parser;
+@synthesize delegate;
 
 - (id)init {
     if (self = [super init]) {
@@ -39,6 +40,11 @@
 }
 
 - (void)loadAllArticles {
+    
+    if ([self.delegate respondsToSelector:@selector(articleManagerDidStartLoading)]) {
+        [self.delegate articleManagerDidStartLoading];
+    }
+    
     // Create a request to download the main RSS feed
     NSURL *feedURL = [NSURL URLWithString:@"http://dailynexus.com/feed/"];
     NSURLRequest *feedDownloadRequest = [[NSURLRequest alloc] initWithURL:feedURL];
@@ -56,10 +62,6 @@
                                    feedContents = [feedContents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                                    
                                    [self.articles addObjectsFromArray:[self.parser articlesWithFeedData:[feedContents dataUsingEncoding:NSUTF8StringEncoding]]];
-                                   
-                                   for (TDNArticle *article in articles) {
-                                       NSLog(@"%@", [article description]);
-                                   }
                                } else {
                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Load Articles"
                                                                                    message:error.localizedDescription
@@ -68,7 +70,16 @@
                                                                          otherButtonTitles:nil, nil];
                                    [alert show];
                                }
+                               
+                               // Notify our delegate we finished loading
+                               if ([self.delegate respondsToSelector:@selector(articleManagerDidFinishLoading)]) {
+                                   [self.delegate articleManagerDidFinishLoading];
+                               }
                            }];
+}
+
+- (NSArray *)currentArticles {
+    return self.articles;
 }
 
 @end
