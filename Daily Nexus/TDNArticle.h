@@ -15,5 +15,6 @@
 @property (copy) NSString *url;
 @property (copy) NSDate *publicationDate;
 @property (retain) NSMutableArray *categories;
+@property (retain) NSMutableArray *images;
 
 @end

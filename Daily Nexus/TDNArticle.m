@@ -15,6 +15,7 @@
 @synthesize url;
 @synthesize publicationDate;
 @synthesize categories;
+@synthesize images;
 
 - (id)init {
     if (self = [super init]) {
@@ -25,6 +26,7 @@
         url = @"";
         publicationDate = [NSDate date];
         categories = [[NSMutableArray alloc] init];
+        images = [[NSMutableArray alloc] init];
     }
     
     return self;
@@ -32,7 +34,7 @@
 
 - (NSString *)description {
     // Generate a reasonably nice representation of the article for debugging
-    NSMutableString *articleDescription = [NSMutableString stringWithFormat:@"%@\nPublished %@ by %@\n%@\nCategories: %@\n%@", self.title, [self.publicationDate description], self.author, self.url, [self.categories description], self.story];
+    NSMutableString *articleDescription = [NSMutableString stringWithFormat:@"%@\nPublished %@ by %@\n%@\nCategories: %@\nImages: %@\n%@", self.title, [self.publicationDate description], self.author, self.url, [self.categories description], [self.images description], self.story];
     
     return articleDescription;
 }
