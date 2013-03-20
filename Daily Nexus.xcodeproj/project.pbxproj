@@ -108,6 +108,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		93B2A19116FA83E000AC06D5 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */,
+				93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */,
+				93AB5D1116F904C100EF6A8A /* TDNArticle.h */,
+				93AB5D1216F904C100EF6A8A /* TDNArticle.m */,
+			);
+			name = "Data Model";
+			sourceTree = "<group>";
+		};
+		93B2A19216FA83EF00AC06D5 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */,
+				93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		93B2A19316FA83FE00AC06D5 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				93AB5D1416F90CCF00EF6A8A /* TDNFeedParser.h */,
+				93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */,
+				93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */,
+				93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */,
+			);
+			name = Parsers;
+			sourceTree = "<group>";
+		};
+		93B2A19416FA842C00AC06D5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */,
+				93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		93B2A19516FA843700AC06D5 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5CA916F9425C00D592B0 /* NSString+Additions.h */,
+				93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
 		93C9507816DEE94F00121B30 = {
 			isa = PBXGroup;
 			children = (
@@ -143,20 +192,11 @@
 			children = (
 				93C9509316DEE94F00121B30 /* TDNAppDelegate.h */,
 				93C9509416DEE94F00121B30 /* TDNAppDelegate.m */,
-				93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */,
-				93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */,
-				93AB5D1416F90CCF00EF6A8A /* TDNFeedParser.h */,
-				93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */,
-				93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */,
-				93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */,
-				93AB5D1116F904C100EF6A8A /* TDNArticle.h */,
-				93AB5D1216F904C100EF6A8A /* TDNArticle.m */,
-				93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */,
-				93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */,
-				93FB5CA916F9425C00D592B0 /* NSString+Additions.h */,
-				93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */,
-				93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */,
-				93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */,
+				93B2A19116FA83E000AC06D5 /* Data Model */,
+				93B2A19316FA83FE00AC06D5 /* Parsers */,
+				93B2A19216FA83EF00AC06D5 /* View Controllers */,
+				93B2A19416FA842C00AC06D5 /* Views */,
+				93B2A19516FA843700AC06D5 /* Categories */,
 				93C9508B16DEE94F00121B30 /* Supporting Files */,
 			);
 			path = "Daily Nexus";
