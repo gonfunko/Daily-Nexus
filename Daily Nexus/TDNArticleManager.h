@@ -11,6 +11,7 @@
 
 @interface TDNArticleManager : NSObject
 
++ (TDNArticleManager *)sharedManager;
 - (void)loadAllArticles;
 
 @end

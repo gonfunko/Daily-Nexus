@@ -28,6 +28,16 @@
     return self;
 }
 
++ (TDNArticleManager *)sharedManager {
+    static TDNArticleManager *sharedManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [[TDNArticleManager alloc] init];
+    });
+    
+    return sharedManager;
+}
+
 - (void)loadAllArticles {
     // Create a request to download the main RSS feed
     NSURL *feedURL = [NSURL URLWithString:@"http://dailynexus.com/feed/"];
