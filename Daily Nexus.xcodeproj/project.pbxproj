@@ -12,6 +12,7 @@
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
 		93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */; };
 		93B2A18D16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */; };
+		93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */; };
 		93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508416DEE94F00121B30 /* UIKit.framework */; };
 		93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
 		93C9508916DEE94F00121B30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508816DEE94F00121B30 /* CoreGraphics.framework */; };
@@ -53,6 +54,8 @@
 		93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCollectionViewCell.h; sourceTree = "<group>"; };
 		93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCollectionViewCell.m; sourceTree = "<group>"; };
 		93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNCollectionViewLeftImageCell.xib; sourceTree = "<group>"; };
+		93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNMultimediaParser.h; sourceTree = "<group>"; };
+		93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNMultimediaParser.m; sourceTree = "<group>"; };
 		93C9508116DEE94F00121B30 /* Daily Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Nexus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C9508416DEE94F00121B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C9508616DEE94F00121B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,8 @@
 				93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */,
 				93AB5D1416F90CCF00EF6A8A /* TDNFeedParser.h */,
 				93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */,
+				93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */,
+				93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */,
 				93AB5D1116F904C100EF6A8A /* TDNArticle.h */,
 				93AB5D1216F904C100EF6A8A /* TDNArticle.m */,
 				93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */,
@@ -316,6 +321,7 @@
 				93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */,
 				93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */,
 				93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */,
+				93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

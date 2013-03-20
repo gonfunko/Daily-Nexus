@@ -10,6 +10,8 @@
 
 @interface TDNFrontPageViewController ()
 
+@property (retain) NSMutableDictionary *images;
+
 @end
 
 @implementation TDNFrontPageViewController
@@ -25,10 +27,31 @@
     [[TDNArticleManager sharedManager] loadAllArticles];
     
     self.title = @"The Daily Nexus";
+    
+    self.images = [[NSMutableDictionary alloc] init];
 }
 
 - (void)articleManagerDidFinishLoading {
+    [self loadImages];
     [self.collectionView reloadData];
+}
+
+- (void)loadImages {
+    for (TDNArticle *article in [[TDNArticleManager sharedManager] currentArticles]) {
+        for (NSString *urlString in article.images) {
+            NSURL *imageURL = [NSURL URLWithString:urlString];
+            NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                if (data) {
+                    UIImage *image = [UIImage imageWithData:data];
+                    if (image) {
+                        [self.images setObject:image forKey:urlString];
+                        [self.collectionView reloadData];
+                    }
+                }
+            }];
+        }
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -44,6 +67,12 @@
     cell.title.text = article.title;
     cell.byline.text = [NSString stringWithFormat:@"Published %@ by %@", [article.publicationDate description], article.author];
     cell.story.text = article.story;
+    
+    if ([article.images count] != 0) {
+        cell.photo.image = [self.images objectForKey:[article.images objectAtIndex:0]];
+    } else {
+        cell.photo.image = nil;
+    }
     
     return cell;
 }
