@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticleManager.h"
+#import "TDNArticleViewController.h"
 
 @interface TDNFrontPageViewController : UITableViewController <TDNArticleManagerDelegate>
 
