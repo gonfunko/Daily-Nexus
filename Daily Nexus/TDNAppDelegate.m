@@ -32,8 +32,14 @@
                                                   UITextAttributeTextShadowColor : [UIColor whiteColor],
                                                   UITextAttributeFont            : [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0]};
     
+    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:40.0/255.0 alpha:1.0],
+                                               UITextAttributeTextShadowColor : [UIColor whiteColor]};
+    
     [[UINavigationBar appearance] setTitleTextAttributes:navigationBarTextAttributes];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"white"] forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:backButtonTextAttributes forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:backButtonTextAttributes forState:UIControlStateHighlighted];
     
     return YES;
 }
