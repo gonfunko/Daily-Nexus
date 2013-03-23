@@ -331,9 +331,31 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
 };
 
 - (NSString *)sanitizedString {
-    NSString *sanitizedString = [self gtm_stringByUnescapingFromHTML];
+    // This is basically a series of hacks to attempt to clean up and normalize the highly irregular contents
+    // of the Daily Nexus RSS feed.
+    // First, remove paragraphs containing a space (yes, that happens) so we don't get tons of newlines
+    NSString *sanitizedString = [self stringByReplacingOccurrencesOfString:@"<p>&nbsp;</p>" withString:@""];
+    // Then, remove all actual newlines so we can put them only where we want them
+    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    // Replace HTML escape codes with their corresponding character
+    sanitizedString = [sanitizedString gtm_stringByUnescapingFromHTML];
+    // Replace closing paragraph tags with two newlines so there's a line break between paragraphs
+    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    // Replace br tags with a space, because sometimes articles show up in the feed pre-wrapped, and if we just nuke
+    // the tags, words will get mashed together
+    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"<br />" withString:@" "];
+    // Strip out all remaining HTML tags
+    sanitizedString = [sanitizedString flattenHTML:sanitizedString];
+    
+    // If the phrase "Staff Writer" appears near the beginning of the text, remove it and everything before it
+    // We already have a byline, and this just breaks the story summaries
+    NSUInteger location = [sanitizedString rangeOfString:@"Staff Writer"].location;
+    if (location != NSNotFound && location < 100) {
+        sanitizedString = [sanitizedString substringFromIndex:location + 12];
+    }
+    
+    // Just to be safe, nuke any whitespace/newlines at the beginning or end of the string
     sanitizedString = [sanitizedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    sanitizedString = [sanitizedString stripHtml];
     
     return sanitizedString;
 }
@@ -402,52 +424,20 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
     return finalString;
 } // gtm_stringByUnescapingHTML
 
-// From http://www.codeilove.com/2011/09/ios-dev-strip-html-tags-from-nsstring.html
-- (NSString*)stripHtml {
-    // take this string obj and wrap it in a root element to ensure only a single root element exists
-    NSString* string = [NSString stringWithFormat:@"<root>%@</root>", self];
-    
-    // add the string to the xml parser
-    NSStringEncoding encoding = string.fastestEncoding;
-    NSData* data = [string dataUsingEncoding:encoding];
-    NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data];
-    
-    // parse the content keeping track of any chars found outside tags (this will be the stripped content)
-    NSString_stripHtml_XMLParsee* parsee = [[NSString_stripHtml_XMLParsee alloc] init];
-    parser.delegate = parsee;
-    [parser parse];
-    
-    // any chars found while parsing are the stripped content
-    NSString* strippedString = [parsee getCharsFound];
-    
-    // get the raw text out of the parsee after parsing, and return it
-    return strippedString;
-}
-
-@end
-
-@implementation NSString_stripHtml_XMLParsee
-
-- (id)init {
-    if (self = [super init]) {
-        strings = [[NSMutableArray alloc] init];
+// From http://rudis.net/content/2009/01/21/flatten-html-content-ie-strip-tags-cocoaobjective-c
+- (NSString *)flattenHTML:(NSString *)html {
+    NSScanner *scanner = [NSScanner scannerWithString:html];;
+    NSString *text = nil;
+    // find start of tag
+    while ([scanner isAtEnd] == NO) {
+        [scanner scanUpToString:@"<" intoString:NULL];
+        // find end of tag
+        [scanner scanUpToString:@">" intoString:&text];
+        // remove the tag
+        html = [html stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"%@>", text] withString:@""];
     }
     
-    return self;
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    [strings addObject:string];
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    if ([elementName isEqualToString:@"br"]) {
-        [strings addObject:@"\n"];
-    }
-}
-
-- (NSString *)getCharsFound {
-    return [strings componentsJoinedByString:@""];
+    return html;
 }
 
 @end
