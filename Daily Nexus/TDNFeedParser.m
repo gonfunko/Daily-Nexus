@@ -69,7 +69,7 @@
         self.currentArticle.url = [self.currentElementData sanitizedString];
     } else if ([elementName isEqualToString:@"content:encoded"]) {
         TDNMultimediaParser *multimediaParser = [[TDNMultimediaParser alloc] init];
-        [self.currentArticle.images addObjectsFromArray:[multimediaParser multimediaURLsFromStoryBody:self.currentElementData]];
+        [self.currentArticle.imageURLs addObjectsFromArray:[multimediaParser multimediaURLsFromStoryBody:self.currentElementData]];
         self.currentArticle.story = [self.currentElementData sanitizedString];
     } else if ([elementName isEqualToString:@"pubDate"]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
