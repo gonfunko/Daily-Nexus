@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TDNMultimediaParser : NSObject <NSXMLParserDelegate>
+@interface TDNMultimediaParser : NSObject
 
 - (NSArray *)multimediaURLsFromStoryBody:(NSString *)story;
 
