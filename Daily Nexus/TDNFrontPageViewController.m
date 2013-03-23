@@ -16,12 +16,12 @@
 
 @implementation TDNFrontPageViewController
 
+@synthesize images;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
-    self.collectionView.backgroundView = backgroundView;
-    
-    [self.collectionView registerNib:[UINib nibWithNibName:@"TDNCollectionViewLeftImageCell" bundle:[NSBundle mainBundle]] forCellWithReuseIdentifier:@"leftImageCell"];
+    self.tableView.backgroundView = backgroundView;
     
     [TDNArticleManager sharedManager].delegate = self;
     [[TDNArticleManager sharedManager] loadAllArticles];
@@ -29,11 +29,13 @@
     self.title = @"The Daily Nexus";
     
     self.images = [[NSMutableDictionary alloc] init];
+    self.tableView = (UITableView *)self.view;
+    self.tableView.rowHeight = 80;
 }
 
 - (void)articleManagerDidFinishLoading {
     [self loadImages];
-    [self.collectionView reloadData];
+    [self.tableView reloadData];
 }
 
 - (void)loadImages {
@@ -46,7 +48,7 @@
                     UIImage *image = [UIImage imageWithData:data];
                     if (image) {
                         [self.images setObject:image forKey:urlString];
-                        [self.collectionView reloadData];
+                        [self.tableView reloadData];
                     }
                 }
             }];
@@ -54,33 +56,48 @@
     }
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[[TDNArticleManager sharedManager] currentArticles] count];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
     
-    TDNCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"leftImageCell" forIndexPath:indexPath];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
     
-    cell.title.text = article.title;
-    cell.byline.text = [NSString stringWithFormat:@"Published %@ by %@", [article.publicationDate description], article.author];
-    cell.story.text = article.story;
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+    }
     
-    if ([article.images count] != 0) {
-        cell.photo.image = [self.images objectForKey:[article.images objectAtIndex:0]];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        cell.textLabel.text = article.title;
+        cell.textLabel.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:30/255.0 alpha:1.0];
+        cell.detailTextLabel.text = article.story;
+        cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:80/255.0 green:80/255.0 blue:80/255.0 alpha:1.0];
+        cell.detailTextLabel.numberOfLines = 3;
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:13.0];
+
+        if ([article.images count] != 0) {
+            CGSize size = CGSizeMake(70, 70);
+            
+            UIGraphicsBeginImageContext(size);
+            [[self.images objectForKey:[article.images objectAtIndex:0]] drawInRect:CGRectMake(0, 0, size.width, size.height)];
+            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+            UIGraphicsEndImageContext();
+            
+            cell.imageView.image = scaledImage;
+        } else {
+            cell.imageView.image = nil;
+        }
+        
+        cell.imageView.layer.masksToBounds = YES;
+        cell.imageView.layer.cornerRadius = 10.0;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
     }
     
     return cell;
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout  *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(collectionView.frame.size.width, 255.0);
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self.collectionView performBatchUpdates:nil completion:nil];
 }
 
 - (void)dealloc {

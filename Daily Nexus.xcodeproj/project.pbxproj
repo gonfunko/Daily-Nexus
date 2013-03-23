@@ -10,8 +10,6 @@
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
-		93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */; };
-		93B2A18D16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */; };
 		93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */; };
 		93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508416DEE94F00121B30 /* UIKit.framework */; };
 		93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
@@ -27,6 +25,7 @@
 		93C950A516DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
 		93C950AD16DEE94F00121B30 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 93C950AB16DEE94F00121B30 /* InfoPlist.strings */; };
 		93C950B016DEE94F00121B30 /* Daily_NexusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C950AF16DEE94F00121B30 /* Daily_NexusTests.m */; };
+		93DE942016FBFEE600A6D657 /* TDNFrontPageTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */; };
 		93FB5CA116F932C800D592B0 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA016F932C800D592B0 /* Icon-72@2x.png */; };
 		93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA216F9332400D592B0 /* NoiseBackground.png */; };
 		93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */; };
@@ -51,9 +50,6 @@
 		93AB5D1216F904C100EF6A8A /* TDNArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticle.m; sourceTree = "<group>"; };
 		93AB5D1416F90CCF00EF6A8A /* TDNFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNFeedParser.h; sourceTree = "<group>"; };
 		93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNFeedParser.m; sourceTree = "<group>"; };
-		93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCollectionViewCell.h; sourceTree = "<group>"; };
-		93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCollectionViewCell.m; sourceTree = "<group>"; };
-		93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNCollectionViewLeftImageCell.xib; sourceTree = "<group>"; };
 		93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNMultimediaParser.h; sourceTree = "<group>"; };
 		93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNMultimediaParser.m; sourceTree = "<group>"; };
 		93C9508116DEE94F00121B30 /* Daily Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Nexus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,6 +71,7 @@
 		93C950AC16DEE94F00121B30 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		93C950AE16DEE94F00121B30 /* Daily_NexusTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Daily_NexusTests.h; sourceTree = "<group>"; };
 		93C950AF16DEE94F00121B30 /* Daily_NexusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Daily_NexusTests.m; sourceTree = "<group>"; };
+		93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNFrontPageTableView.xib; sourceTree = "<group>"; };
 		93FB5CA016F932C800D592B0 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		93FB5CA216F9332400D592B0 /* NoiseBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoiseBackground.png; sourceTree = "<group>"; };
 		93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNFrontPageViewController.h; sourceTree = "<group>"; };
@@ -139,15 +136,6 @@
 			name = Parsers;
 			sourceTree = "<group>";
 		};
-		93B2A19416FA842C00AC06D5 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				93B2A18916FA595500AC06D5 /* TDNCollectionViewCell.h */,
-				93B2A18A16FA595500AC06D5 /* TDNCollectionViewCell.m */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
 		93B2A19516FA843700AC06D5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +183,6 @@
 				93B2A19116FA83E000AC06D5 /* Data Model */,
 				93B2A19316FA83FE00AC06D5 /* Parsers */,
 				93B2A19216FA83EF00AC06D5 /* View Controllers */,
-				93B2A19416FA842C00AC06D5 /* Views */,
 				93B2A19516FA843700AC06D5 /* Categories */,
 				93C9508B16DEE94F00121B30 /* Supporting Files */,
 			);
@@ -215,7 +202,7 @@
 				93C9509616DEE94F00121B30 /* Default.png */,
 				93C9509816DEE94F00121B30 /* Default@2x.png */,
 				93C9509A16DEE94F00121B30 /* Default-568h@2x.png */,
-				93B2A18C16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib */,
+				93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -318,7 +305,7 @@
 				93FB5CA116F932C800D592B0 /* Icon-72@2x.png in Resources */,
 				93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */,
 				93FB5CA816F93EFB00D592B0 /* white.png in Resources */,
-				93B2A18D16FA5F5700AC06D5 /* TDNCollectionViewLeftImageCell.xib in Resources */,
+				93DE942016FBFEE600A6D657 /* TDNFrontPageTableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +347,6 @@
 				93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */,
 				93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */,
 				93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */,
-				93B2A18B16FA595500AC06D5 /* TDNCollectionViewCell.m in Sources */,
 				93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,12 +450,12 @@
 		93C950B416DEE94F00121B30 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Dodson (N8DJ46FH9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Daily Nexus/Daily Nexus-Prefix.pch";
 				INFOPLIST_FILE = "Daily Nexus/Daily Nexus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0FA58E0D-4DEE-4A20-BAAD-2AEFB43CAF7D";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -477,12 +463,12 @@
 		93C950B516DEE94F00121B30 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Robert Dodson (N8DJ46FH9G)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Daily Nexus/Daily Nexus-Prefix.pch";
 				INFOPLIST_FILE = "Daily Nexus/Daily Nexus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0FA58E0D-4DEE-4A20-BAAD-2AEFB43CAF7D";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

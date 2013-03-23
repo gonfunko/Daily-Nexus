@@ -17,8 +17,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Create our root view controller
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    TDNFrontPageViewController *frontPageViewController = [[TDNFrontPageViewController alloc] initWithCollectionViewLayout:layout];
+    TDNFrontPageViewController *frontPageViewController = [[TDNFrontPageViewController alloc] initWithNibName:@"TDNFrontPageTableView" bundle:[NSBundle mainBundle]];
     
     // And a navigation controller to embed it in
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontPageViewController];
