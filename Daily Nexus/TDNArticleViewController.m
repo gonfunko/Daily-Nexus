@@ -33,4 +33,18 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NoiseBackground"]];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // After a rotation, layout the article view's subviews to fit the new view dimensions
+    [self.articleView setNeedsLayout];
+    [self.articleView sizeToFit];
+    ((UIScrollView *)self.view).contentSize = self.articleView.frame.size;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // When the view is show, layout subviews again (in case the device is rotated)
+    [self.articleView setNeedsLayout];
+    [self.articleView sizeToFit];
+    ((UIScrollView *)self.view).contentSize = self.articleView.frame.size;
+}
+
 @end

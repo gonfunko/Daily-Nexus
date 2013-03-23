@@ -31,15 +31,15 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
-			<object class="IBUIScrollView" id="817215050">
+			<object class="IBUIScrollView" id="6983199">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">268</int>
+				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="IBUIView" id="826700177">
-						<reference key="NSNextResponder" ref="817215050"/>
+					<object class="IBUIView" id="1010167528">
+						<reference key="NSNextResponder" ref="6983199"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrameSize">{320, 504}</string>
-						<reference key="NSSuperview" ref="817215050"/>
+						<reference key="NSSuperview" ref="6983199"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -56,9 +56,8 @@
 				<string key="NSFrame">{{0, 64}, {320, 504}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="826700177"/>
+				<reference key="NSNextKeyView" ref="1010167528"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
-				<bool key="IBUIAutoresizesSubviews">NO</bool>
 				<bool key="IBUIClipsSubviews">YES</bool>
 				<bool key="IBUIMultipleTouchEnabled">YES</bool>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
@@ -92,7 +91,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="817215050"/>
+						<reference key="destination" ref="6983199"/>
 					</object>
 					<int key="connectionID">46</int>
 				</object>
@@ -100,7 +99,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">articleView</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="826700177"/>
+						<reference key="destination" ref="1010167528"/>
 					</object>
 					<int key="connectionID">47</int>
 				</object>
@@ -126,16 +125,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">35</int>
-						<reference key="object" ref="817215050"/>
+						<reference key="object" ref="6983199"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="826700177"/>
+							<reference ref="1010167528"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">36</int>
-						<reference key="object" ref="826700177"/>
-						<reference key="parent" ref="817215050"/>
+						<reference key="object" ref="1010167528"/>
+						<reference key="parent" ref="6983199"/>
 					</object>
 				</array>
 			</object>

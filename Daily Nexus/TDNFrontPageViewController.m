@@ -39,7 +39,7 @@
 - (void)loadImages {
     // Iterate through every image URL in every article...
     for (TDNArticle *article in [[TDNArticleManager sharedManager] currentArticles]) {
-        for (NSString *urlString in article.images) {
+        for (NSString *urlString in article.imageURLs) {
             // Set up a request and try to download the image
             NSURL *imageURL = [NSURL URLWithString:urlString];
             NSURLRequest *request = [NSURLRequest requestWithURL:imageURL];

@@ -61,6 +61,8 @@
     
     // And make our background clear so the noise texture shows through
     self.backgroundColor = [UIColor clearColor];
+    
+    self.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 }
 
 // Even though we have an article property, override the setter to configure the view when the article changes
@@ -89,6 +91,11 @@
     
     // Once that's done, set the frame of the whole view to contain all the subviews
     [self setFrame:CGRectMake(0, 0, self.frame.size.width, self.story.frame.origin.y + self.story.frame.size.height + 10)];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    // The view's desired size is whatever its width is and enough height to fully display all subviews
+    return CGSizeMake(self.bounds.size.width, self.story.frame.origin.y + self.story.frame.size.height + 10);
 }
 
 - (void)layoutSubviews {
