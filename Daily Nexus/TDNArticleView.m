@@ -12,7 +12,7 @@
 @property (retain) UILabel *title;
 @property (retain) UILabel *byline;
 @property (retain) UIImageView *imageView;
-@property (retain) UILabel *story;
+@property (retain) UITextView *story;
 
 @end
 
@@ -30,7 +30,7 @@
         title = [[UILabel alloc] init];
         byline = [[UILabel alloc] init];
         imageView = [[UIImageView alloc] init];
-        story = [[UILabel alloc] init];
+        story = [[UITextView alloc] init];
     }
     
     return self;
@@ -48,10 +48,12 @@
     self.byline.font = [UIFont fontWithName:@"Palatino" size:14.0];
     self.byline.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
     
-    self.story.numberOfLines = 0;
+    self.story.editable = NO;
+    self.story.scrollEnabled = NO;
     self.story.backgroundColor = [UIColor clearColor];
     self.story.font = [UIFont fontWithName:@"Palatino" size:16.0];
     self.story.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+    self.story.dataDetectorTypes = UIDataDetectorTypeLink | UIDataDetectorTypePhoneNumber;
     
     // Add all our child views
     [self addSubview:self.title];
@@ -84,7 +86,7 @@
     }
     
     // And show the story text
-    story.text = [article.story stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\n"];
+    story.text = article.story;
     
     // We need to update the bounds of our subviews to fit their contents
     [self layoutSubviews];
@@ -125,7 +127,9 @@
     }
     
     // Finally, set the frame of the main story text
-    self.story.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, 0);
+    self.story.frame = CGRectMake(0, verticalOffset, self.frame.size.width, 0);
+    self.story.frame = CGRectMake(0, verticalOffset, self.frame.size.width, self.story.contentSize.height);
+
     [self.story sizeToFit];
 }
 
