@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		931B5AE816FD60FE00151548 /* TDNArticleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B5AE616FD60FE00151548 /* TDNArticleViewController.m */; };
+		931B5AE916FD60FE00151548 /* TDNArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 931B5AE716FD60FE00151548 /* TDNArticleViewController.xib */; };
+		931B5AEC16FD61ED00151548 /* TDNArticleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 931B5AEB16FD61ED00151548 /* TDNArticleView.m */; };
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
@@ -44,6 +47,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		931B5AE516FD60FE00151548 /* TDNArticleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleViewController.h; sourceTree = "<group>"; };
+		931B5AE616FD60FE00151548 /* TDNArticleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleViewController.m; sourceTree = "<group>"; };
+		931B5AE716FD60FE00151548 /* TDNArticleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNArticleViewController.xib; sourceTree = "<group>"; };
+		931B5AEA16FD61ED00151548 /* TDNArticleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleView.h; sourceTree = "<group>"; };
+		931B5AEB16FD61ED00151548 /* TDNArticleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleView.m; sourceTree = "<group>"; };
 		93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleManager.h; sourceTree = "<group>"; };
 		93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleManager.m; sourceTree = "<group>"; };
 		93AB5D1116F904C100EF6A8A /* TDNArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticle.h; sourceTree = "<group>"; };
@@ -105,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		931B5AED16FD61F400151548 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				931B5AEA16FD61ED00151548 /* TDNArticleView.h */,
+				931B5AEB16FD61ED00151548 /* TDNArticleView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		93B2A19116FA83E000AC06D5 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +138,8 @@
 			children = (
 				93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */,
 				93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */,
+				931B5AE516FD60FE00151548 /* TDNArticleViewController.h */,
+				931B5AE616FD60FE00151548 /* TDNArticleViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -183,6 +202,7 @@
 				93B2A19116FA83E000AC06D5 /* Data Model */,
 				93B2A19316FA83FE00AC06D5 /* Parsers */,
 				93B2A19216FA83EF00AC06D5 /* View Controllers */,
+				931B5AED16FD61F400151548 /* Views */,
 				93B2A19516FA843700AC06D5 /* Categories */,
 				93C9508B16DEE94F00121B30 /* Supporting Files */,
 			);
@@ -203,6 +223,7 @@
 				93C9509816DEE94F00121B30 /* Default@2x.png */,
 				93C9509A16DEE94F00121B30 /* Default-568h@2x.png */,
 				93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */,
+				931B5AE716FD60FE00151548 /* TDNArticleViewController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -306,6 +327,7 @@
 				93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */,
 				93FB5CA816F93EFB00D592B0 /* white.png in Resources */,
 				93DE942016FBFEE600A6D657 /* TDNFrontPageTableView.xib in Resources */,
+				931B5AE916FD60FE00151548 /* TDNArticleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +370,8 @@
 				93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */,
 				93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */,
 				93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */,
+				931B5AE816FD60FE00151548 /* TDNArticleViewController.m in Sources */,
+				931B5AEC16FD61ED00151548 /* TDNArticleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
