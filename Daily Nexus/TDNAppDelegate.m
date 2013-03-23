@@ -32,8 +32,9 @@
                                                   UITextAttributeTextShadowColor : [UIColor whiteColor],
                                                   UITextAttributeFont            : [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0]};
     
-    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:40.0/255.0 alpha:1.0],
-                                               UITextAttributeTextShadowColor : [UIColor whiteColor]};
+    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0],
+                                               UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                               UITextAttributeFont            : [UIFont fontWithName:@"Palatino" size:13.0]};
     
     [[UINavigationBar appearance] setTitleTextAttributes:navigationBarTextAttributes];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"white"] forBarMetrics:UIBarMetricsDefault];
