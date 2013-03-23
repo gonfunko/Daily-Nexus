@@ -66,7 +66,7 @@
                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Load Articles"
                                                                                    message:error.localizedDescription
                                                                                   delegate:nil
-                                                                         cancelButtonTitle:nil
+                                                                         cancelButtonTitle:@"OK"
                                                                          otherButtonTitles:nil, nil];
                                    [alert show];
                                }
