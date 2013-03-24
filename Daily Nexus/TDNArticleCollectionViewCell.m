@@ -66,6 +66,13 @@
     return self;
 }
 
+- (void)prepareForReuse {
+    self.title.text = @"";
+    self.byline.text = @"";
+    self.story.text = @"";
+    self.imageView.image = nil;
+}
+
 - (CGSize)sizeThatFits:(CGSize)size {
     // Our ideal size is whatever our width is and high enough to completely fit the story
     return CGSizeMake(self.frame.size.width, self.story.frame.origin.y + self.story.frame.size.height + 10);
@@ -84,7 +91,7 @@
     verticalOffset += self.byline.frame.size.height + 10;
     
     if (self.imageView.image != nil) {
-        self.imageView.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, (imageView.image.size.width / (self.frame.size.width - 20)) * imageView.image.size.height);
+        self.imageView.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, ((self.frame.size.width - 20) / imageView.image.size.width) * imageView.image.size.height);
         verticalOffset += self.imageView.frame.size.height + 10;
     }
     

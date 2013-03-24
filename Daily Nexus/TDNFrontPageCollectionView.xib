@@ -31,7 +31,7 @@
 				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 			</object>
-			<object class="IBUICollectionView" id="601781692">
+			<object class="IBUICollectionView" id="868417139">
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews"/>
@@ -51,9 +51,9 @@
 				<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 				<float key="IBUIMinimumZoomScale">0.0</float>
 				<float key="IBUIMaximumZoomScale">0.0</float>
-				<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="526807899">
-					<reference key="IBUICollectionView" ref="601781692"/>
-					<string key="IBUIItemSize">{256, 50}</string>
+				<object class="IBUICollectionViewFlowLayout" key="IBUICollectionViewLayout" id="837424906">
+					<reference key="IBUICollectionView" ref="868417139"/>
+					<string key="IBUIItemSize">{50, 50}</string>
 				</object>
 				<array key="IBUICells" id="0"/>
 			</object>
@@ -64,14 +64,14 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">view</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="601781692"/>
+						<reference key="destination" ref="868417139"/>
 					</object>
 					<int key="connectionID">5</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
-						<reference key="source" ref="601781692"/>
+						<reference key="source" ref="868417139"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">6</int>
@@ -79,7 +79,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
-						<reference key="source" ref="601781692"/>
+						<reference key="source" ref="868417139"/>
 						<reference key="destination" ref="372490531"/>
 					</object>
 					<int key="connectionID">7</int>
@@ -106,16 +106,16 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">3</int>
-						<reference key="object" ref="601781692"/>
+						<reference key="object" ref="868417139"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="526807899"/>
+							<reference ref="837424906"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
-						<reference key="object" ref="526807899"/>
-						<reference key="parent" ref="601781692"/>
+						<reference key="object" ref="837424906"/>
+						<reference key="parent" ref="868417139"/>
 					</object>
 				</array>
 			</object>

@@ -55,6 +55,14 @@
                                                                             action:nil];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self.tableView reloadData];
+    } else {
+        [self.collectionView reloadData];
+    }
+}
+
 - (void)articleManagerDidFinishLoading {
     // When the article manager finishes downloading, we load images and update the list of articles
     [self loadImages];
@@ -177,22 +185,37 @@
     cell.byline.text = [article byline];
     cell.story.text = article.story;
     
+    if ([article.images count] != 0) {
+        cell.imageView.image = [article.images lastObject];
+    }
+    
     // Determine the needed size and resize the cell
     [cell layoutIfNeeded];
-    [cell setFrame:CGRectMake(0, 0, [cell sizeThatFits:CGSizeZero].width, [cell sizeThatFits:CGSizeZero].height)];
     
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger itemWidth = 256;
+
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        itemWidth = 340;
+    } else {
+        itemWidth = 380;
+    }
+    
     /* To figure out the size for a given item, we actually create and configure the corresponding cell to get its size metrics.
        This isn't terribly efficient and should probably be replaced with something better (or cached), but it works for now */
     TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
-    TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 256, 0)];
+    TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, itemWidth, 0)];
     
     cell.title.text = article.title;
     cell.byline.text = [article byline];
     cell.story.text = article.story;
+    
+    if ([article.images count] != 0) {
+        cell.imageView.image = [article.images lastObject];
+    }
     
     [cell layoutIfNeeded];
     
@@ -206,6 +229,10 @@
     [self.navigationController pushViewController:articleViewController animated:YES];
     
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionView performBatchUpdates:nil completion:nil];
 }
 
 - (void)dealloc {
