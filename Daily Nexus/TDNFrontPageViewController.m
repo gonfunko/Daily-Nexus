@@ -199,6 +199,15 @@
     return [cell sizeThatFits:CGSizeZero];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    // Create an article view controller, set its article to the one that was selected, and present it
+    TDNMultiColumnArticleViewController *articleViewController = [[TDNMultiColumnArticleViewController alloc] initWithNibName:@"TDNMultiColumnArticleViewController" bundle:[NSBundle mainBundle]];
+    articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:articleViewController animated:YES];
+    
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+}
+
 - (void)dealloc {
     [TDNArticleManager sharedManager].delegate = nil;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
