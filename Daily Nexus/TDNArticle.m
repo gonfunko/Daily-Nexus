@@ -49,4 +49,10 @@
     return articleDescription;
 }
 
+- (NSString *)htmlRepresentationWithHeight:(NSInteger)height {
+    NSString *htmlRepresentation = [NSString stringWithFormat:@"<html><div style=\"-webkit-column-width: 13em; -webkit-column-gap: 1em; font-family: Palatino; font-size: 12pt; color: #2b2b2b; height: %ldpx;\"><h1 style=\"font-family: Palatino; font-size: 20pt; font-weight: bold; color: #2b2b2b;\">%@</h1><h2 style=\"font-family: Palatino; font-weight: normal; font-size: 10pt; color: #b8b8b8;\">%@</h2>%@</div></html>", (long)height, self.title, [self byline], self.story];
+    
+    return htmlRepresentation;
+}
+
 @end
