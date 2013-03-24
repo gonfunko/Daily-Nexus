@@ -11,6 +11,7 @@
 
 @property (copy) NSString *title;
 @property (copy) NSString *story;
+@property (copy) NSString *rawStory;
 @property (copy) NSString *author;
 @property (copy) NSString *url;
 @property (copy) NSDate *publicationDate;

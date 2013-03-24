@@ -11,6 +11,7 @@
 
 @synthesize title;
 @synthesize story;
+@synthesize rawStory;
 @synthesize author;
 @synthesize url;
 @synthesize publicationDate;
@@ -23,6 +24,7 @@
         // Initialize all our properties to non-nil values
         title = @"";
         story = @"";
+        rawStory = @"";
         author = @"";
         url = @"";
         publicationDate = [NSDate date];

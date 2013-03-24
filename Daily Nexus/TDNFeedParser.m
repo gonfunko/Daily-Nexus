@@ -57,7 +57,6 @@
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    
     // Based on the name of the element we finished parsing, set the appropriate article property to
     // the contents of currentElementData. In all cases, we want to sanitize this value first to strip
     // whitespace, replace HTML escape sequences and remove tags
@@ -71,6 +70,7 @@
         TDNMultimediaParser *multimediaParser = [[TDNMultimediaParser alloc] init];
         [self.currentArticle.imageURLs addObjectsFromArray:[multimediaParser multimediaURLsFromStoryBody:self.currentElementData]];
         self.currentArticle.story = [self.currentElementData sanitizedString];
+        self.currentArticle.rawStory = self.currentElementData;
     } else if ([elementName isEqualToString:@"pubDate"]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
