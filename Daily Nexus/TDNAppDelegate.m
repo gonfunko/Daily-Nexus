@@ -17,8 +17,13 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     // Create our root view controller
-    TDNFrontPageViewController *frontPageViewController = [[TDNFrontPageViewController alloc] initWithNibName:@"TDNFrontPageTableView" bundle:[NSBundle mainBundle]];
-    
+    TDNFrontPageViewController *frontPageViewController = nil;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        frontPageViewController = [[TDNFrontPageViewController alloc] initWithNibName:@"TDNFrontPageTableView" bundle:[NSBundle mainBundle]];
+    } else {
+        frontPageViewController = [[TDNFrontPageViewController alloc] initWithNibName:@"TDNFrontPageCollectionView" bundle:[NSBundle mainBundle]];
+    }
+
     // And a navigation controller to embed it in
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontPageViewController];
     

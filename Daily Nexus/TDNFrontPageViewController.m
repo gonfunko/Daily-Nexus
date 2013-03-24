@@ -3,18 +3,27 @@
 //  Daily Nexus
 //
 //  TDNFrontPageViewController is responsible for managing the "front page" view that the user first
-//  sees when launching the app and providing data and cells to the collection view that displays stories
+//  sees when launching the app and providing data and cells to the collection or table view that displays stories
 //
 
 #import "TDNFrontPageViewController.h"
 
+@interface TDNFrontPageViewController ()
+
+@property (retain) UITableView *tableView;
+@property (retain) UICollectionView *collectionView;
+
+@end
+
 @implementation TDNFrontPageViewController
+
+@synthesize tableView;
+@synthesize collectionView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Draw the noise texture behind the list of articles
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
-    self.tableView.backgroundView = backgroundView;
     
     // Download the latest articles
     [TDNArticleManager sharedManager].delegate = self;
@@ -22,18 +31,39 @@
     
     self.title = @"The Daily Nexus";
     
+    // Depending on whether we're running on an iPhone or iPad, configure the table or collection view, respectively
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        self.tableView = (UITableView *)self.view;
+        self.tableView.rowHeight = 80;
+        self.tableView.backgroundView = backgroundView;
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+    } else {
+        self.collectionView = (UICollectionView *)self.view;
+        self.collectionView.backgroundView = backgroundView;
+        self.collectionView.delegate = self;
+        self.collectionView.dataSource = self;
+        
+        // Register our collection view cell with the collection view so we can dequeue instances of it
+        [self.collectionView registerClass:[TDNArticleCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+    }
+    
+    // Specify the back button that will be used when we push a view controller on the stack
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Articles"
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:nil
                                                                             action:nil];
-    
-    self.tableView.rowHeight = 80;
 }
 
 - (void)articleManagerDidFinishLoading {
     // When the article manager finishes downloading, we load images and update the list of articles
     [self loadImages];
-    [self.tableView reloadData];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self.tableView reloadData];
+    } else {
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)loadImages {
@@ -53,7 +83,11 @@
                     if (image) {
                         // If so, add the image to the article object and reload the table to show it
                         [article.images addObject:image];
-                        [self.tableView reloadData];
+                        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+                            [self.tableView reloadData];
+                        } else {
+                            [self.collectionView reloadData];
+                        }
                     }
                 }
             }];
@@ -123,10 +157,57 @@
     TDNArticleViewController *articleViewController = [[TDNArticleViewController alloc] initWithNibName:@"TDNArticleViewController" bundle:[NSBundle mainBundle]];
     articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:articleViewController animated:YES];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [[[TDNArticleManager sharedManager] currentArticles] count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // Determine the article in question
+    TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    
+    // Get a cell from the collection view
+    TDNArticleCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    
+    // Configure it to reflect the article's contents
+    cell.title.text = article.title;
+    cell.byline.text = [article byline];
+    cell.story.text = article.story;
+    
+    // Determine the needed size and resize the cell
+    [cell layoutIfNeeded];
+    [cell setFrame:CGRectMake(0, 0, [cell sizeThatFits:CGSizeZero].width, [cell sizeThatFits:CGSizeZero].height)];
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    /* To figure out the size for a given item, we actually create and configure the corresponding cell to get its size metrics.
+       This isn't terribly efficient and should probably be replaced with something better (or cached), but it works for now */
+    TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, 256, 0)];
+    
+    cell.title.text = article.title;
+    cell.byline.text = [article byline];
+    cell.story.text = article.story;
+    
+    [cell layoutIfNeeded];
+    
+    return [cell sizeThatFits:CGSizeZero];
 }
 
 - (void)dealloc {
     [TDNArticleManager sharedManager].delegate = nil;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        self.tableView.delegate = nil;
+        self.tableView.dataSource = nil;
+    } else {
+        self.collectionView.delegate = nil;
+        self.collectionView.dataSource = nil;
+    }
 }
 
 @end
