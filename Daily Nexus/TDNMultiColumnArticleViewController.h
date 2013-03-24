@@ -2,8 +2,8 @@
 //  TDNMultiColumnArticleViewController.h
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/23/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  TDNMultiColumnArticleViewController uses a UIWebView and CSS 3 to display story text in a multi-column
+//  format along with the title, byline and image(s)
 //
 
 #import <UIKit/UIKit.h>
@@ -11,8 +11,6 @@
 
 @interface TDNMultiColumnArticleViewController : UIViewController <UIWebViewDelegate>
 
-@property (retain, nonatomic) IBOutlet UIWebView *webview;
-@property (retain, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (retain) TDNArticle *article;
 
 @end
