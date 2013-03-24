@@ -34,6 +34,14 @@
     return self;
 }
 
+- (NSString *)byline {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMMM d, YYYY"];
+    NSString *byline = [NSString stringWithFormat:@"Published %@ by %@", [formatter stringFromDate:self.publicationDate], self.author];
+    
+    return byline;
+}
+
 - (NSString *)description {
     // Generate a reasonably nice representation of the article for debugging
     NSMutableString *articleDescription = [NSMutableString stringWithFormat:@"%@\nPublished %@ by %@\n%@\nCategories: %@\nImages: %@\n%@", self.title, [self.publicationDate description], self.author, self.url, [self.categories description], [self.imageURLs description], self.story];

@@ -18,4 +18,5 @@
 @property (retain) NSMutableArray *imageURLs;
 @property (retain) NSMutableArray *images;
 
+- (NSString *)byline;
 @end
