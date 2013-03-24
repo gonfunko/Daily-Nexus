@@ -56,17 +56,16 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        [self.tableView reloadData];
-    } else {
-        [self.collectionView reloadData];
-    }
+    [self reloadData];
 }
 
 - (void)articleManagerDidFinishLoading {
     // When the article manager finishes downloading, we load images and update the list of articles
     [self loadImages];
-    
+    [self reloadData];
+}
+
+- (void)reloadData {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         [self.tableView reloadData];
     } else {
@@ -91,11 +90,7 @@
                     if (image) {
                         // If so, add the image to the article object and reload the table to show it
                         [article.images addObject:image];
-                        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-                            [self.tableView reloadData];
-                        } else {
-                            [self.collectionView reloadData];
-                        }
+                        [self reloadData];
                     }
                 }
             }];
@@ -198,6 +193,8 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger itemWidth = 256;
 
+    // Depending on our orientation, we want to show either two or three stories per row. These
+    // dimensions are chosen so that that will happen
     if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
         itemWidth = 340;
     } else {
@@ -213,6 +210,7 @@
     cell.byline.text = [article byline];
     cell.story.text = article.story;
     
+    // If we have an image, add it to the cell
     if ([article.images count] != 0) {
         cell.imageView.image = [article.images lastObject];
     }
@@ -232,6 +230,7 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // When we rotate, update the collection view so it uses the appropriate size cells
     [self.collectionView performBatchUpdates:nil completion:nil];
 }
 
