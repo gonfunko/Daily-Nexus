@@ -14,6 +14,7 @@
 		9363651516FE5C5900E3153B /* TDNMultiColumnArticleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9363651316FE5C5900E3153B /* TDNMultiColumnArticleViewController.xib */; };
 		9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */; };
 		9363652016FF980400E3153B /* TDNFrontPageCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */; };
+		9363652316FF9BA800E3153B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363652116FF9B9C00E3153B /* QuartzCore.framework */; };
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
@@ -62,6 +63,7 @@
 		9363651C16FF7EF800E3153B /* TDNArticleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleCollectionViewCell.h; sourceTree = "<group>"; };
 		9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleCollectionViewCell.m; sourceTree = "<group>"; };
 		9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNFrontPageCollectionView.xib; sourceTree = "<group>"; };
+		9363652116FF9B9C00E3153B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleManager.h; sourceTree = "<group>"; };
 		93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleManager.m; sourceTree = "<group>"; };
 		93AB5D1116F904C100EF6A8A /* TDNArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticle.h; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			files = (
 				93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */,
 				93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */,
+				9363652316FF9BA800E3153B /* QuartzCore.framework in Frameworks */,
 				93C9508916DEE94F00121B30 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -132,6 +135,30 @@
 				9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		9363652416FF9C5300E3153B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5CA716F93EFB00D592B0 /* white.png */,
+				93FB5CA016F932C800D592B0 /* Icon-72@2x.png */,
+				93FB5CA216F9332400D592B0 /* NoiseBackground.png */,
+				93C9509616DEE94F00121B30 /* Default.png */,
+				93C9509816DEE94F00121B30 /* Default@2x.png */,
+				93C9509A16DEE94F00121B30 /* Default-568h@2x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		9363652516FF9C5F00E3153B /* XIBs */ = {
+			isa = PBXGroup;
+			children = (
+				93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */,
+				9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */,
+				931B5AE716FD60FE00151548 /* TDNArticleViewController.xib */,
+				9363651316FE5C5900E3153B /* TDNMultiColumnArticleViewController.xib */,
+			);
+			name = XIBs;
 			sourceTree = "<group>";
 		};
 		93B2A19116FA83E000AC06D5 /* Data Model */ = {
@@ -200,6 +227,7 @@
 		93C9508316DEE94F00121B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9363652116FF9B9C00E3153B /* QuartzCore.framework */,
 				93C9508416DEE94F00121B30 /* UIKit.framework */,
 				93C9508616DEE94F00121B30 /* Foundation.framework */,
 				93C9508816DEE94F00121B30 /* CoreGraphics.framework */,
@@ -226,20 +254,12 @@
 		93C9508B16DEE94F00121B30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				93FB5CA716F93EFB00D592B0 /* white.png */,
-				93FB5CA016F932C800D592B0 /* Icon-72@2x.png */,
-				93FB5CA216F9332400D592B0 /* NoiseBackground.png */,
+				9363652516FF9C5F00E3153B /* XIBs */,
+				9363652416FF9C5300E3153B /* Images */,
+				93C9509216DEE94F00121B30 /* Daily Nexus-Prefix.pch */,
+				93C9509016DEE94F00121B30 /* main.m */,
 				93C9508C16DEE94F00121B30 /* Daily Nexus-Info.plist */,
 				93C9508D16DEE94F00121B30 /* InfoPlist.strings */,
-				93C9509016DEE94F00121B30 /* main.m */,
-				93C9509216DEE94F00121B30 /* Daily Nexus-Prefix.pch */,
-				93C9509616DEE94F00121B30 /* Default.png */,
-				93C9509816DEE94F00121B30 /* Default@2x.png */,
-				93C9509A16DEE94F00121B30 /* Default-568h@2x.png */,
-				93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */,
-				9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */,
-				931B5AE716FD60FE00151548 /* TDNArticleViewController.xib */,
-				9363651316FE5C5900E3153B /* TDNMultiColumnArticleViewController.xib */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

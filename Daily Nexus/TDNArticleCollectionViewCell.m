@@ -2,8 +2,7 @@
 //  TDNArticleCollectionViewCell.m
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/24/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  TDNArticleCollectionViewCell displays the contents of an article in a UICollectionView
 //
 
 #import "TDNArticleCollectionViewCell.h"
@@ -28,6 +27,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // Initialize and configure our various subviews
         title = [[UILabel alloc] init];
         byline = [[UILabel alloc] init];
         story = [[UILabel alloc] init];
@@ -51,20 +51,28 @@
         story.font = [UIFont fontWithName:@"Palatino" size:16.0];
         story.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
         
+        // Actually make them subviews
         [self addSubview:title];
         [self addSubview:byline];
         [self addSubview:story];
         [self addSubview:imageView];
+        
+        // Set up a highlight color when we're selected
+        UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:frame];
+        selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+        selectedBackgroundView.layer.cornerRadius = 5.0;
+        [self setSelectedBackgroundView:selectedBackgroundView];
     }
     return self;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
+    // Our ideal size is whatever our width is and high enough to completely fit the story
     return CGSizeMake(self.frame.size.width, self.story.frame.origin.y + self.story.frame.size.height + 10);
 }
 
 - (void)layoutSubviews {
-    NSLog(@"layout subviews");
+    // Go through our views and set their frames appropriately
     NSInteger verticalOffset = 10;
     
     self.title.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, 0);
@@ -80,6 +88,7 @@
         verticalOffset += self.imageView.frame.size.height + 10;
     }
     
+    // Set our frame to something that will fit our contents
     self.story.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, 0);
     [self.story sizeToFit];
 }
