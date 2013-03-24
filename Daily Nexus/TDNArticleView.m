@@ -74,11 +74,8 @@
     // Set the title's text to the article's title
     title.text = article.title;
     
-    // Create an NSDateFormatter to get a nice date representation in the byline
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MMMM d, YYYY"];
     // Generate the byline text
-    byline.text = [NSString stringWithFormat:@"Published %@ by %@", [formatter stringFromDate:article.publicationDate], article.author];
+    byline.text = [article byline];
     
     // If we have an image, display it in the image view
     if ([article.images count] != 0) {
