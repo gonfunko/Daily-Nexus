@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticleManager.h"
-#import "TDNMultiColumnArticleViewController.h"
+#import "TDNArticleViewController.h"
 #import "TDNArticleCollectionViewCell.h"
 
 @interface TDNFrontPageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, TDNArticleManagerDelegate>
