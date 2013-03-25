@@ -157,8 +157,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Create an article view controller, set its article to the one that was selected, and present it
-    TDNArticleViewController *articleViewController = [[TDNArticleViewController alloc] initWithNibName:@"TDNArticleViewController" bundle:[NSBundle mainBundle]];
+    TDNMultiColumnArticleViewController *articleViewController = [[TDNMultiColumnArticleViewController alloc] initWithNibName:@"TDNMultiColumnArticleViewController" bundle:[NSBundle mainBundle]];
     articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    articleViewController.columnated = NO;
     [self.navigationController pushViewController:articleViewController animated:YES];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -224,6 +225,7 @@
     // Create an article view controller, set its article to the one that was selected, and present it
     TDNMultiColumnArticleViewController *articleViewController = [[TDNMultiColumnArticleViewController alloc] initWithNibName:@"TDNMultiColumnArticleViewController" bundle:[NSBundle mainBundle]];
     articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    articleViewController.columnated = YES;
     [self.navigationController pushViewController:articleViewController animated:YES];
     
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];

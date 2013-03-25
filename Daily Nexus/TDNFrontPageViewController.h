@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticleManager.h"
-#import "TDNArticleViewController.h"
 #import "TDNMultiColumnArticleViewController.h"
 #import "TDNArticleCollectionViewCell.h"
 
