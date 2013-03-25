@@ -16,6 +16,10 @@
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
 		93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */; };
+		93BF9DD21700C52D005FCC7C /* TDNSlidingDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BF9DD11700C52D005FCC7C /* TDNSlidingDrawerViewController.m */; };
+		93BF9DD61700CC97005FCC7C /* TDNSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */; };
+		93BF9DD71700CC97005FCC7C /* TDNSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */; };
+		93BF9DD91700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */; };
 		93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508416DEE94F00121B30 /* UIKit.framework */; };
 		93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
 		93C9508916DEE94F00121B30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508816DEE94F00121B30 /* CoreGraphics.framework */; };
@@ -64,6 +68,12 @@
 		93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNFeedParser.m; sourceTree = "<group>"; };
 		93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNMultimediaParser.h; sourceTree = "<group>"; };
 		93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNMultimediaParser.m; sourceTree = "<group>"; };
+		93BF9DD01700C52D005FCC7C /* TDNSlidingDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNSlidingDrawerViewController.h; sourceTree = "<group>"; };
+		93BF9DD11700C52D005FCC7C /* TDNSlidingDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNSlidingDrawerViewController.m; sourceTree = "<group>"; };
+		93BF9DD31700CC97005FCC7C /* TDNSectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNSectionViewController.h; sourceTree = "<group>"; };
+		93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNSectionViewController.m; sourceTree = "<group>"; };
+		93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNSectionViewController.xib; sourceTree = "<group>"; };
+		93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNSlidingDrawerViewController.xib; sourceTree = "<group>"; };
 		93C9508116DEE94F00121B30 /* Daily Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Nexus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C9508416DEE94F00121B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C9508616DEE94F00121B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -146,6 +156,8 @@
 				93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */,
 				9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */,
 				9363651316FE5C5900E3153B /* TDNArticleViewController.xib */,
+				93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */,
+				93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */,
 			);
 			name = XIBs;
 			sourceTree = "<group>";
@@ -164,10 +176,14 @@
 		93B2A19216FA83EF00AC06D5 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				93BF9DD01700C52D005FCC7C /* TDNSlidingDrawerViewController.h */,
+				93BF9DD11700C52D005FCC7C /* TDNSlidingDrawerViewController.m */,
 				93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */,
 				93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */,
 				9363651116FE5C5900E3153B /* TDNArticleViewController.h */,
 				9363651216FE5C5900E3153B /* TDNArticleViewController.m */,
+				93BF9DD31700CC97005FCC7C /* TDNSectionViewController.h */,
+				93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -352,6 +368,8 @@
 				93DE942016FBFEE600A6D657 /* TDNFrontPageTableView.xib in Resources */,
 				9363651516FE5C5900E3153B /* TDNArticleViewController.xib in Resources */,
 				9363652016FF980400E3153B /* TDNFrontPageCollectionView.xib in Resources */,
+				93BF9DD71700CC97005FCC7C /* TDNSectionViewController.xib in Resources */,
+				93BF9DD91700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +414,8 @@
 				93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */,
 				9363651416FE5C5900E3153B /* TDNArticleViewController.m in Sources */,
 				9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */,
+				93BF9DD21700C52D005FCC7C /* TDNSlidingDrawerViewController.m in Sources */,
+				93BF9DD61700CC97005FCC7C /* TDNSectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "TDNFrontPageViewController.h"
+#import "TDNSectionViewController.h"
+#import "TDNSlidingDrawerViewController.h"
 
 @interface TDNAppDelegate : UIResponder <UIApplicationDelegate>
 
