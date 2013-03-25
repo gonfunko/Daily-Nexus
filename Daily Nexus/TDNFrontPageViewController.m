@@ -12,6 +12,7 @@
 
 @property (retain) UITableView *tableView;
 @property (retain) UICollectionView *collectionView;
+@property (retain) NSArray *cellSizes;
 
 @end
 
@@ -53,6 +54,11 @@
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:nil
                                                                             action:nil];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sections"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self.parentViewController.parentViewController
+                                                                            action:@selector(toggleLeftDrawer)];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,6 +68,7 @@
 - (void)articleManagerDidFinishLoading {
     // When the article manager finishes downloading, we load images and update the list of articles
     [self loadImages];
+    [self generateCellSizes];
     [self reloadData];
 }
 
@@ -98,6 +105,43 @@
     }
 }
 
+- (void)generateCellSizes {
+    NSMutableArray *sizes = [[NSMutableArray alloc] init];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        NSInteger itemWidth = 256;
+        
+        // Depending on our orientation, we want to show either two or three stories per row. These
+        // dimensions are chosen so that that will happen
+        if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+            itemWidth = 340;
+        } else {
+            itemWidth = 380;
+        }
+        
+        for (int i = 0; i < [[[TDNArticleManager sharedManager] currentArticles] count]; i++) {
+            // To figure out the size for a given item, we actually create and configure the corresponding cell to get its size metrics.
+            TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:i];
+            TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, itemWidth, 0)];
+            
+            // Set the cell's text
+            cell.title.text = article.title;
+            cell.byline.text = [article byline];
+            cell.story.text = article.story;
+            
+            // If we have an image, add it to the cell
+            if ([article.images count] != 0) {
+                cell.imageView.image = [article.images lastObject];
+            }
+            
+            // Determine the cell's desired size and cache it
+            [cell layoutIfNeeded];
+            [sizes addObject:[NSValue valueWithCGSize:[cell sizeThatFits:CGSizeZero]]];
+        }
+    }
+    
+    self.cellSizes = sizes;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[[TDNArticleManager sharedManager] currentArticles] count];
 }
@@ -111,47 +155,48 @@
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
-    }
-    
-    // Depending on whether we're on an iPhone/iPod touch or iPad, we want to configure the cell differently...
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        // Set the main text of the cell to the article title and configure the font and colors
-        cell.textLabel.text = article.title;
+        // Configure the appearance of the cell's subviews
         cell.textLabel.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:30/255.0 alpha:1.0];
         cell.textLabel.font = [UIFont fontWithName:@"Palatino-Bold" size:18.0];
         
-        // Set the cell's detail text to the first few lines of the article
-        cell.detailTextLabel.text = article.story;
         cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.detailTextLabel.textColor = [UIColor colorWithRed:80/255.0 green:80/255.0 blue:80/255.0 alpha:1.0];
         cell.detailTextLabel.numberOfLines = 3;
         cell.detailTextLabel.font = [UIFont fontWithName:@"Palatino" size:13.0];
-
-        // If the article has any images, add the first one to the cell
-        if ([article.images count] != 0) {
-            // We want the image to be square, so draw the image into a square graphics context and use the resulting image
-            CGSize size = CGSizeMake(70, 70);
-            
-            UIGraphicsBeginImageContext(size);
-            [[article.images objectAtIndex:0] drawInRect:CGRectMake(0, 0, size.width, size.height)];
-            UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-            UIGraphicsEndImageContext();
-            
-            cell.imageView.image = scaledImage;
-        } else {
-            // If we don't have any images, set it to nil in case this cell is being reused
-            cell.imageView.image = nil;
-        }
         
         // Round the corners of the image
         cell.imageView.layer.masksToBounds = YES;
         cell.imageView.layer.cornerRadius = 10.0;
+        cell.imageView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
+        cell.imageView.layer.shouldRasterize = YES;
         
         // And add a disclosure triangle to the cell
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
     }
     
+    // Set the main text of the cell to the article title
+    cell.textLabel.text = article.title;
+            
+    // Set the cell's detail text to the first few lines of the article
+    cell.detailTextLabel.text = article.story;
+   
+    // If the article has any images, add the first one to the cell
+    if ([article.images count] != 0) {
+        // We want the image to be square, so draw the image into a square graphics context and use the resulting image
+        CGSize size = CGSizeMake(70, 70);
+        
+        UIGraphicsBeginImageContext(size);
+        [[article.images objectAtIndex:0] drawInRect:CGRectMake(0, 0, size.width, size.height)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        cell.imageView.image = scaledImage;
+    } else {
+        // If we don't have any images, set it to nil in case this cell is being reused
+        cell.imageView.image = nil;
+    }
+        
+           
     return cell;
 }
 
@@ -185,40 +230,15 @@
         cell.imageView.image = [article.images lastObject];
     }
     
-    // Determine the needed size and resize the cell
-    [cell layoutIfNeeded];
-    
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSInteger itemWidth = 256;
-
-    // Depending on our orientation, we want to show either two or three stories per row. These
-    // dimensions are chosen so that that will happen
-    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-        itemWidth = 340;
+    if (indexPath.row < [self.cellSizes count]) {
+        return [[self.cellSizes objectAtIndex:indexPath.row] CGSizeValue];
     } else {
-        itemWidth = 380;
+        return CGSizeMake(256, 256);
     }
-    
-    /* To figure out the size for a given item, we actually create and configure the corresponding cell to get its size metrics.
-       This isn't terribly efficient and should probably be replaced with something better (or cached), but it works for now */
-    TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
-    TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, itemWidth, 0)];
-    
-    cell.title.text = article.title;
-    cell.byline.text = [article byline];
-    cell.story.text = article.story;
-    
-    // If we have an image, add it to the cell
-    if ([article.images count] != 0) {
-        cell.imageView.image = [article.images lastObject];
-    }
-    
-    [cell layoutIfNeeded];
-    
-    return [cell sizeThatFits:CGSizeZero];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -232,6 +252,7 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self generateCellSizes];
     // When we rotate, update the collection view so it uses the appropriate size cells
     [self.collectionView performBatchUpdates:nil completion:nil];
 }

@@ -33,29 +33,34 @@
         story = [[UILabel alloc] init];
         imageView = [[UIImageView alloc] init];
         
-        title.backgroundColor = [UIColor clearColor];
         title.numberOfLines = 0;
         title.lineBreakMode = NSLineBreakByWordWrapping;
         title.font = [UIFont fontWithName:@"Palatino-Bold" size:24.0];
         title.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+        title.backgroundColor = [UIColor clearColor];
+        title.opaque = YES;
         
-        byline.backgroundColor = [UIColor clearColor];
         byline.numberOfLines = 0;
         byline.lineBreakMode = NSLineBreakByWordWrapping;
         byline.font = [UIFont fontWithName:@"Palatino" size:12.0];
         byline.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+        byline.backgroundColor = [UIColor clearColor];
+        byline.opaque = YES;
         
-        story.backgroundColor = [UIColor clearColor];
         story.numberOfLines = 5;
         story.lineBreakMode = NSLineBreakByWordWrapping;
         story.font = [UIFont fontWithName:@"Palatino" size:16.0];
         story.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+        story.backgroundColor = [UIColor clearColor];
+        story.opaque = YES;
         
         // Actually make them subviews
         [self addSubview:title];
         [self addSubview:byline];
         [self addSubview:story];
         [self addSubview:imageView];
+        
+        self.opaque = YES;
         
         // Set up a highlight color when we're selected
         UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:frame];

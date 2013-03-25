@@ -48,13 +48,8 @@
     self.mainViewController.view.layer.shadowColor = [UIColor blackColor].CGColor;
     self.mainViewController.view.layer.shadowOpacity = 0.5;
     self.mainViewController.view.layer.shadowRadius = 3.0;
-    
-    // Listen for changes to our view's bounds, so we can resize our child views appropriately when
-    // the device is rotated
-    [self addObserver:self
-           forKeyPath:@"view.bounds"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
+    CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
+    self.mainViewController.view.layer.shadowPath = path;
 }
 
 - (void)toggleLeftDrawer {
@@ -87,6 +82,10 @@
         [self.view insertSubview:[self.leftViewController view] belowSubview:[self.mainViewController view]];
         [self.leftViewController didMoveToParentViewController:self];
         
+        // Set the shadow path
+        CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
+        self.mainViewController.view.layer.shadowPath = path;
+        
         // Make the main view's shadow appear on the left
         self.mainViewController.view.layer.shadowOffset = CGSizeMake(-3, 0);
         
@@ -104,7 +103,7 @@
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{ self.mainViewController.view.frame = CGRectMake(width, 0, self.mainViewController.view.frame.size.width, self.mainViewController.view.frame.size.height); }
-                         completion:NULL];
+                         completion:^(BOOL finished) { self.leftViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleRightMargin; }];
         
         // Note that the left drawer is now visible
         self.leftDrawerVisible = YES;
@@ -141,6 +140,10 @@
         [self.view insertSubview:[self.rightViewController view] belowSubview:[self.mainViewController view]];
         [self.rightViewController didMoveToParentViewController:self];
         
+        // Set the shadow path
+        CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
+        self.mainViewController.view.layer.shadowPath = path;
+        
         // Make the main view's shadow appear on the right
         self.mainViewController.view.layer.shadowOffset = CGSizeMake(3, 0);
         
@@ -158,7 +161,7 @@
                               delay:0.0
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{ self.mainViewController.view.frame = CGRectMake(-width, 0, self.mainViewController.view.frame.size.width, self.mainViewController.view.frame.size.height); }
-                         completion:NULL];
+                         completion:^(BOOL finished) { self.rightViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleLeftMargin; }];
         
         // Note that the right drawer is now visible
         self.rightDrawerVisible = YES;
@@ -166,29 +169,28 @@
 
 }
 
-// This method will be called whenever our view's bounds change
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    // Determine how wide the drawer should be
-    NSInteger width = 260;
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        width = 320;
-    }
-
-    // If the left drawer is visible, correct the frame of the drawer view and main view
-    if (self.leftDrawerVisible) {
-        self.leftViewController.view.frame = CGRectMake(0, 0, width, self.view.bounds.size.height);
-        self.mainViewController.view.frame = CGRectMake(width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+// Workaround from http://blog.radi.ws/post/8348898129/calayers-shadowpath-and-uiview-autoresizing to update shadow path during rotation
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    CGPathRef oldShadowPath = self.mainViewController.view.layer.shadowPath;
+    
+    if (oldShadowPath) {
+        CFRetain(oldShadowPath);
     }
     
-    // Do the same if the right drawer is visible
-    if (self.rightDrawerVisible) {
-        self.rightViewController.view.frame = CGRectMake(self.view.bounds.size.width - width, 0, width, self.view.bounds.size.height);
-        self.mainViewController.view.frame = CGRectMake(-width, 0, self.view.bounds.size.width, self.view.bounds.size.height);
-    }
-}
+    // Update shadow path for the view
+    CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
+    self.mainViewController.view.layer.shadowPath = path;
 
-- (void)dealloc {
-    [self removeObserver:self forKeyPath:@"view.bounds"];
+    if (oldShadowPath) {
+        [self.mainViewController.view.layer addAnimation:((^ {
+            CABasicAnimation *transition = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+            transition.fromValue = (__bridge id)oldShadowPath;
+            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            transition.duration = duration;
+            return transition;
+        })()) forKey:@"transition"];
+        CFRelease(oldShadowPath);
+    }
 }
 
 @end
