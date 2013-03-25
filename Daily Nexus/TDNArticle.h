@@ -19,7 +19,7 @@
 @property (retain) NSMutableArray *imageURLs;
 @property (retain) NSMutableArray *images;
 
-- (NSString *)htmlRepresentationWithHeight:(NSInteger)height;
+- (NSString *)htmlRepresentationWithHeight:(NSInteger)height andColumns:(BOOL)columns;
 - (NSString *)byline;
 
 @end

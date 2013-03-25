@@ -51,8 +51,19 @@
     return articleDescription;
 }
 
-- (NSString *)htmlRepresentationWithHeight:(NSInteger)height {
-    NSString *htmlRepresentation = [NSString stringWithFormat:@"<html><div style=\"-webkit-column-width: 20em; -webkit-column-gap: 1.5em; font-family: Palatino; font-size: 12pt; color: #2b2b2b; height: %ldpx;\" id=\"container\"><h1 style=\"font-family: Palatino; font-size: 20pt; font-weight: bold; color: #2b2b2b;\">%@</h1><h2 style=\"font-family: Palatino; font-weight: normal; font-size: 10pt; color: #b8b8b8;\">%@</h2>%@</div></html>", (long)height, self.title, [self byline], self.rawStory];
+- (NSString *)htmlRepresentationWithHeight:(NSInteger)height andColumns:(BOOL)columns {
+    NSString *htmlRepresentation = @"";
+    if (columns) {
+        /* A quick explanation of this awfulness: This is designed for display in the multi-column article view.
+           To that end, the following appearance tweaks are included: 20px margins on all sides. This isn't 
+           directly set on the div because CSS multicolumns with a fixed height and without a specified number of
+           columns can't figure out their width, so you get margins everywhere except the right. Thus, we set them on
+           the top and left on the div, and on the right on the internal p element, which fakes it (and handles whitespace
+           between columns). We also enable justification and hyphenation for the text for nice typography and set the fonts and colors. */
+        htmlRepresentation = [NSString stringWithFormat:@"<html><head><style>p { margin-right: 20px; text-align: justify; -webkit-hyphens: auto; } h6 { margin-right: 20px; text-align: justify; -webkit-hyphens: auto; } body { margin: 0; padding: 0; }</style></head><body><div style=\"margin-top: 20px; margin-left: 20px; -webkit-column-width: 18em; font-family: Palatino; font-size: 12pt; color: #2b2b2b; height: %ldpx;\" id=\"container\"><h1 style=\"font-family: Palatino; font-size: 20pt; font-weight: bold; color: #2b2b2b; margin-right: 20px; margin-top: -3px;\">%@</h1><h2 style=\"font-family: Palatino; font-weight: normal; font-size: 10pt; color: #b8b8b8; margin-right: 20px;\">%@</h2>%@</div></body></html>", (long)height, self.title, [self byline], self.rawStory];
+    } else {
+        htmlRepresentation = [NSString stringWithFormat:@"<html><body><div style=\"font-family: Palatino; font-size: 12pt; color: #2b2b2b; height: %ldpx; margin: 5px;\" id=\"container\"><h1 style=\"font-family: Palatino; font-size: 20pt; font-weight: bold; color: #2b2b2b;\">%@</h1><h2 style=\"font-family: Palatino; font-weight: normal; font-size: 10pt; color: #b8b8b8;\">%@</h2><div style=\"text-align: justify; -webkit-hyphens: auto; margin-bottom: 10px;\">%@</div></div></body></html>", (long)height, self.title, [self byline], self.rawStory];
+    }
     
     return htmlRepresentation;
 }
