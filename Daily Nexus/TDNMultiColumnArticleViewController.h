@@ -12,5 +12,6 @@
 @interface TDNMultiColumnArticleViewController : UIViewController <UIWebViewDelegate>
 
 @property (retain) TDNArticle *article;
+@property (assign) BOOL columnated;
 
 @end
