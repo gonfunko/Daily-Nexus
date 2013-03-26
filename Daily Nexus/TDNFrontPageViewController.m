@@ -29,7 +29,7 @@
     
     // Download the latest articles
     [TDNArticleManager sharedManager].delegate = self;
-    [[TDNArticleManager sharedManager] loadAllArticles];
+    [[TDNArticleManager sharedManager] loadArticlesInSection:@""];
     
     self.title = @"The Daily Nexus";
     
@@ -67,10 +67,19 @@
     self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.loadingView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(changeSection:)
+                                                 name:@"TDNSectionChangedNotification"
+                                               object:nil];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [self reloadData];
+}
+
+- (void)articleManagerDidStartLoading {
+    [self.view addSubview:self.loadingView];
 }
 
 - (void)articleManagerDidFinishLoading {
@@ -93,9 +102,17 @@
     }
 }
 
+- (void)changeSection:(NSNotification *)notification {
+    NSString *section = notification.object;
+    
+    [[TDNArticleManager sharedManager] removeAllArticles];
+    [self reloadData];
+    [[TDNArticleManager sharedManager] loadArticlesInSection:section];
+}
+
 - (void)loadImages {
     // Iterate through every image URL in every article...
-    for (TDNArticle *article in [[TDNArticleManager sharedManager] currentArticles]) {
+    for (TDNArticle *article in [TDNArticleManager sharedManager].articles) {
         for (NSString *urlString in article.imageURLs) {
             // Set up a request and try to download the image
             NSURL *imageURL = [NSURL URLWithString:urlString];
@@ -119,12 +136,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[TDNArticleManager sharedManager] currentArticles] count];
+    return [[TDNArticleManager sharedManager].articles count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Identify the article corresponding to this row in the table
-    TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    TDNArticle *article = [[TDNArticleManager sharedManager].articles objectAtIndex:indexPath.row];
     
     // Get a cell, either by dequeueing a reusable one or allocing a new one
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -176,7 +193,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Create an article view controller, set its article to the one that was selected, and present it
     TDNArticleViewController *articleViewController = [[TDNArticleViewController alloc] initWithNibName:@"TDNArticleViewController" bundle:[NSBundle mainBundle]];
-    articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    articleViewController.article = [[TDNArticleManager sharedManager].articles objectAtIndex:indexPath.row];
     articleViewController.columnated = NO;
     [self.navigationController pushViewController:articleViewController animated:YES];
     
@@ -184,12 +201,12 @@
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [[[TDNArticleManager sharedManager] currentArticles] count];
+    return [[TDNArticleManager sharedManager].articles count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     // Determine the article in question
-    TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    TDNArticle *article = [[TDNArticleManager sharedManager].articles objectAtIndex:indexPath.row];
     
     // Get a cell from the collection view
     TDNArticleCollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
@@ -220,7 +237,7 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     // Create an article view controller, set its article to the one that was selected, and present it
     TDNArticleViewController *articleViewController = [[TDNArticleViewController alloc] initWithNibName:@"TDNArticleViewController" bundle:[NSBundle mainBundle]];
-    articleViewController.article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:indexPath.row];
+    articleViewController.article = [[TDNArticleManager sharedManager].articles objectAtIndex:indexPath.row];
     articleViewController.columnated = YES;
     [self.navigationController pushViewController:articleViewController animated:YES];
     
@@ -241,6 +258,8 @@
         self.collectionView.delegate = nil;
         self.collectionView.dataSource = nil;
     }
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

@@ -9,7 +9,7 @@
 
 @interface TDNArticleManager ()
 
-@property (retain) NSMutableArray *articles;
+@property (retain, readwrite) NSArray *articles;
 @property (retain) TDNFeedParser *parser;
 
 @end
@@ -22,7 +22,7 @@
 
 - (id)init {
     if (self = [super init]) {
-        articles = [[NSMutableArray alloc] init];
+        articles = [[NSArray alloc] init];
         parser = [[TDNFeedParser alloc] init];
     }
     
@@ -39,14 +39,24 @@
     return sharedManager;
 }
 
-- (void)loadAllArticles {
+- (void)loadArticlesInSection:(NSString *)section {
     
     if ([self.delegate respondsToSelector:@selector(articleManagerDidStartLoading)]) {
         [self.delegate articleManagerDidStartLoading];
     }
     
+    NSDictionary *feedURLs = @{@"Features"       : @"http://dailynexus.com/category/feature/feed/",
+                               @"News"           : @"http://dailynexus.com/category/news/feed/",
+                               @"Sports"         : @"http://dailynexus.com/category/sports/feed/",
+                               @"Opinion"        : @"http://dailynexus.com/category/opinion/feed/",
+                               @"Artsweek"       : @"http://dailynexus.com/category/artsweek/feed/",
+                               @"On the Menu"    : @"http://dailynexus.com/category/on-the-menu/feed/",
+                               @"Science & Tech" : @"http://dailynexus.com/category/science/feed/",
+                               @"Online"         : @"http://dailynexus.com/category/online-2/feed/",
+                               @""               : @"http://dailynexus.com/feed/"};
+    
     // Create a request to download the main RSS feed
-    NSURL *feedURL = [NSURL URLWithString:@"http://dailynexus.com/feed/"];
+    NSURL *feedURL = [NSURL URLWithString:[feedURLs objectForKey:section]];
     NSURLRequest *feedDownloadRequest = [[NSURLRequest alloc] initWithURL:feedURL];
     
     // Attempt to load the feed
@@ -61,7 +71,7 @@
                                    NSString *feedContents = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                                    feedContents = [feedContents stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                                    
-                                   [self.articles addObjectsFromArray:[self.parser articlesWithFeedData:[feedContents dataUsingEncoding:NSUTF8StringEncoding]]];
+                                   self.articles = [self.parser articlesWithFeedData:[feedContents dataUsingEncoding:NSUTF8StringEncoding]];
                                } else {
                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Load Articles"
                                                                                    message:error.localizedDescription
@@ -78,8 +88,8 @@
                            }];
 }
 
-- (NSArray *)currentArticles {
-    return self.articles;
+- (void)removeAllArticles {
+    self.articles = [NSArray array];
 }
 
 @end

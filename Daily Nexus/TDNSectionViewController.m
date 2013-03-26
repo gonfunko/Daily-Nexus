@@ -7,7 +7,17 @@
 
 #import "TDNSectionViewController.h"
 
+@interface TDNSectionViewController ()
+
+@property (retain) NSArray *sections;
+@property (retain) NSArray *images;
+
+@end
+
 @implementation TDNSectionViewController
+
+@synthesize sections;
+@synthesize images;
 
 - (void)viewWillAppear:(BOOL)animated {
     // Set up our background view
@@ -16,6 +26,20 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.title = @"Sections";
+    
+    self.sections = @[@"Features", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
+    
+    /* Image credits:
+     Star from The Noun Project
+     Idea designed by Andrew Laskey from The Noun Project
+     Erlenmeyer Flask designed by Emily van den Heever from The Noun Project
+     Earth designed by Nicolas Ramallo from The Noun Project
+     Newspaper designed by John Caserta from The Noun Project
+     Gymnasium designed by Edward Boatman, Mike Clare & Jessica Durkin from The Noun Project
+     Art Gallery designed by Saman Bemel-Benrud from The Noun Project
+     Fast Food designed by Jinju Jang from The Noun Project */
+    
+    self.images = @[@"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -41,32 +65,18 @@
         cell.textLabel.highlightedTextColor = [UIColor colorWithWhite:0.2 alpha:1.0];
     }
     
-    NSArray *sections = @[@"Feature", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
-    /* Image credits:
-       Star from The Noun Project
-       Idea designed by Andrew Laskey from The Noun Project
-       Erlenmeyer Flask designed by Emily van den Heever from The Noun Project
-       Earth designed by Nicolas Ramallo from The Noun Project
-       Newspaper designed by John Caserta from The Noun Project
-       Gymnasium designed by Edward Boatman, Mike Clare & Jessica Durkin from The Noun Project
-       Art Gallery designed by Saman Bemel-Benrud from The Noun Project
-       Fast Food designed by Jinju Jang from The Noun Project */
-    NSArray *imageNames = @[@"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
-    
-    cell.textLabel.text = [sections objectAtIndex:indexPath.row];
-    cell.imageView.image = [UIImage imageNamed:[imageNames objectAtIndex:indexPath.row]];
+    cell.textLabel.text = [self.sections objectAtIndex:indexPath.row];
+    cell.imageView.image = [UIImage imageNamed:[self.images objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"TDNSectionChangedNotification" object:[self.sections objectAtIndex:indexPath.row]];
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.parentViewController.parentViewController performSelector:@selector(toggleLeftDrawer)];
 }
 
 @end

@@ -33,6 +33,8 @@
 }
 
 - (NSArray *)articlesWithFeedData:(NSData *)feedData {
+    self.articles = [[NSMutableArray alloc] init];
+    
     // Create an XML parser and use it to parse the RSS feed
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:feedData];
     [parser setDelegate:self];

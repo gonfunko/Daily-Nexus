@@ -24,19 +24,7 @@
 //  the License.
 //
 
-//  NSString_stripHtml.h
-//  Copyright 2011 Leigh McCulloch. Released under the MIT license.
-
 #import "NSString+TDNAdditions.h"
-
-@interface NSString_stripHtml_XMLParsee : NSObject<NSXMLParserDelegate> {
-@private
-    NSMutableArray *strings;
-}
-
-- (NSString *)getCharsFound;
-
-@end
 
 @implementation NSString (TDNAdditions)
 
