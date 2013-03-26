@@ -23,10 +23,8 @@
 @synthesize story;
 @synthesize imageView;
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+- (id)initWithFrame:(CGRect)frame {
+    if (self = [super initWithFrame:frame]) {
         // Initialize and configure our various subviews
         title = [[UILabel alloc] init];
         byline = [[UILabel alloc] init];
@@ -47,7 +45,7 @@
         byline.backgroundColor = [UIColor clearColor];
         byline.opaque = YES;
         
-        story.numberOfLines = 5;
+        story.numberOfLines = 0;
         story.lineBreakMode = NSLineBreakByWordWrapping;
         story.font = [UIFont fontWithName:@"Palatino" size:16.0];
         story.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
@@ -78,11 +76,6 @@
     self.imageView.image = nil;
 }
 
-- (CGSize)sizeThatFits:(CGSize)size {
-    // Our ideal size is whatever our width is and high enough to completely fit the story
-    return CGSizeMake(self.frame.size.width, self.story.frame.origin.y + self.story.frame.size.height + 10);
-}
-
 - (void)layoutSubviews {
     // Go through our views and set their frames appropriately
     NSInteger verticalOffset = 10;
@@ -101,8 +94,7 @@
     }
     
     // Set our frame to something that will fit our contents
-    self.story.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, 0);
-    [self.story sizeToFit];
+    self.story.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, self.frame.size.height - (verticalOffset + 20));
 }
 
 @end

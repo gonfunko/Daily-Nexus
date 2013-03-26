@@ -12,7 +12,6 @@
 
 @property (retain) UITableView *tableView;
 @property (retain) UICollectionView *collectionView;
-@property (retain) NSArray *cellSizes;
 @property (retain) UIView *loadingView;
 
 @end
@@ -22,7 +21,6 @@
 @synthesize tableView;
 @synthesize collectionView;
 @synthesize loadingView;
-@synthesize cellSizes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,7 +82,6 @@
     }
     
     [self loadImages];
-    [self generateCellSizes];
     [self reloadData];
 }
 
@@ -119,43 +116,6 @@
             }];
         }
     }
-}
-
-- (void)generateCellSizes {
-    NSMutableArray *sizes = [[NSMutableArray alloc] init];
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        NSInteger itemWidth = 256;
-        
-        // Depending on our orientation, we want to show either two or three stories per row. These
-        // dimensions are chosen so that that will happen
-        if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
-            itemWidth = 340;
-        } else {
-            itemWidth = 380;
-        }
-        
-        for (int i = 0; i < [[[TDNArticleManager sharedManager] currentArticles] count]; i++) {
-            // To figure out the size for a given item, we actually create and configure the corresponding cell to get its size metrics.
-            TDNArticle *article = [[[TDNArticleManager sharedManager] currentArticles] objectAtIndex:i];
-            TDNArticleCollectionViewCell *cell = [[TDNArticleCollectionViewCell alloc] initWithFrame:CGRectMake(0, 0, itemWidth, 0)];
-            
-            // Set the cell's text
-            cell.title.text = article.title;
-            cell.byline.text = [article byline];
-            cell.story.text = article.story;
-            
-            // If we have an image, add it to the cell
-            if ([article.images count] != 0) {
-                cell.imageView.image = [article.images lastObject];
-            }
-            
-            // Determine the cell's desired size and cache it
-            [cell layoutIfNeeded];
-            [sizes addObject:[NSValue valueWithCGSize:[cell sizeThatFits:CGSizeZero]]];
-        }
-    }
-    
-    self.cellSizes = sizes;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -210,7 +170,6 @@
         cell.imageView.image = nil;
     }
         
-           
     return cell;
 }
 
@@ -244,14 +203,17 @@
         cell.imageView.image = [article.images lastObject];
     }
     
+    // Resize the cell's subviews to fit their contents
+    [cell setNeedsLayout];
+    
     return cell;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row < [self.cellSizes count]) {
-        return [[self.cellSizes objectAtIndex:indexPath.row] CGSizeValue];
+    if (UIDeviceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+        return CGSizeMake(340, 420);
     } else {
-        return CGSizeMake(256, 256);
+        return CGSizeMake(380, 460);
     }
 }
 
@@ -266,7 +228,6 @@
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
-    [self generateCellSizes];
     // When we rotate, update the collection view so it uses the appropriate size cells
     [self.collectionView performBatchUpdates:nil completion:nil];
 }
