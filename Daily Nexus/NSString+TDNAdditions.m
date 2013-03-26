@@ -1,5 +1,5 @@
 //
-//  NSString+Additions.m
+//  NSString+TDNAdditions.m
 //  Daily Nexus
 //
 //  A collection of methods to do nice things to strings
@@ -27,7 +27,7 @@
 //  NSString_stripHtml.h
 //  Copyright 2011 Leigh McCulloch. Released under the MIT license.
 
-#import "NSString+Additions.h"
+#import "NSString+TDNAdditions.h"
 
 @interface NSString_stripHtml_XMLParsee : NSObject<NSXMLParserDelegate> {
 @private
@@ -38,7 +38,7 @@
 
 @end
 
-@implementation NSString (Additions)
+@implementation NSString (TDNAdditions)
 
 
 typedef struct {

@@ -59,7 +59,7 @@
 		93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA216F9332400D592B0 /* NoiseBackground.png */; };
 		93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */; };
 		93FB5CA816F93EFB00D592B0 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA716F93EFB00D592B0 /* white.png */; };
-		93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */; };
+		93FB5CAB16F9425C00D592B0 /* NSString+TDNAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5CAA16F9425C00D592B0 /* NSString+TDNAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -141,8 +141,8 @@
 		93FB5CA416F93B5E00D592B0 /* TDNFrontPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNFrontPageViewController.h; sourceTree = "<group>"; };
 		93FB5CA516F93B5E00D592B0 /* TDNFrontPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNFrontPageViewController.m; sourceTree = "<group>"; };
 		93FB5CA716F93EFB00D592B0 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
-		93FB5CA916F9425C00D592B0 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
-		93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		93FB5CA916F9425C00D592B0 /* NSString+TDNAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TDNAdditions.h"; sourceTree = "<group>"; };
+		93FB5CAA16F9425C00D592B0 /* NSString+TDNAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TDNAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -266,8 +266,8 @@
 		93B2A19516FA843700AC06D5 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				93FB5CA916F9425C00D592B0 /* NSString+Additions.h */,
-				93FB5CAA16F9425C00D592B0 /* NSString+Additions.m */,
+				93FB5CA916F9425C00D592B0 /* NSString+TDNAdditions.h */,
+				93FB5CAA16F9425C00D592B0 /* NSString+TDNAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -492,7 +492,7 @@
 				93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */,
 				93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */,
 				93FB5CA616F93B5E00D592B0 /* TDNFrontPageViewController.m in Sources */,
-				93FB5CAB16F9425C00D592B0 /* NSString+Additions.m in Sources */,
+				93FB5CAB16F9425C00D592B0 /* NSString+TDNAdditions.m in Sources */,
 				93B2A19016FA6F2500AC06D5 /* TDNMultimediaParser.m in Sources */,
 				9363651416FE5C5900E3153B /* TDNArticleViewController.m in Sources */,
 				9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */,

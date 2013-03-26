@@ -1,5 +1,5 @@
 //
-//  NSString+Additions.h
+//  NSString+TDNAdditions.h
 //  Daily Nexus
 //
 //  A collection of methods to do nice things to strings
@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (Additions)
+@interface NSString (TDNAdditions)
 
 - (NSString *)sanitizedString;
 
