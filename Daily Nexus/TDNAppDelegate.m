@@ -28,13 +28,14 @@
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:frontPageViewController];
 
     // Create a section view controller
-    TDNSectionViewController *sectionViewController = [[TDNSectionViewController alloc] initWithNibName:@"TDNSectionViewController" bundle:[NSBundle mainBundle]];
+    TDNSectionViewController *sectionsViewController = [[TDNSectionViewController alloc] initWithNibName:@"TDNSectionViewController" bundle:[NSBundle mainBundle]];
+    UINavigationController *sectionsNavigiationController = [[UINavigationController alloc] initWithRootViewController:sectionsViewController];
     
     // And a sliding drawer view controller with the section controller as the left view controller and the navigation controller as the main view controller
     TDNSlidingDrawerViewController *slidingDrawerViewController = [[TDNSlidingDrawerViewController alloc] initWithNibName:@"TDNSlidingDrawerViewController"
                                                                                            bundle:[NSBundle mainBundle]
                                                                                mainViewController:navigationController
-                                                                               leftViewController:sectionViewController
+                                                                               leftViewController:sectionsNavigiationController
                                                                            andRightViewController:nil];
     
     // Set the window's root view controller and display the window

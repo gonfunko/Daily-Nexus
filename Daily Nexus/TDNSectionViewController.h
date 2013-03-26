@@ -2,8 +2,7 @@
 //  TDNSectionViewController.h
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/25/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  TDNSectionViewController is responsible for displaying and selecting sections to show articles from
 //
 
 #import <UIKit/UIKit.h>

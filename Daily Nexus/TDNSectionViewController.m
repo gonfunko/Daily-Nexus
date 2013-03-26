@@ -2,21 +2,19 @@
 //  TDNSectionViewController.m
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/25/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  TDNSectionViewController is responsible for displaying and selecting sections to show articles from
 //
 
 #import "TDNSectionViewController.h"
 
-@interface TDNSectionViewController ()
-
-@end
-
 @implementation TDNSectionViewController
 
 - (void)viewWillAppear:(BOOL)animated {
+    // Set up our background view
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
     self.tableView.backgroundView = backgroundView;
+    
+    self.title = @"Sections";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -35,17 +33,25 @@
     }
     
     NSArray *sections = @[@"Feature", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
+    /* Image credits:
+       Star from The Noun Project
+       Idea designed by Andrew Laskey from The Noun Project
+       Erlenmeyer Flask designed by Emily van den Heever from The Noun Project
+       Earth designed by Nicolas Ramallo from The Noun Project
+       Newspaper designed by John Caserta from The Noun Project
+       Gymnasium designed by Edward Boatman, Mike Clare & Jessica Durkin from The Noun Project
+       Art Gallery designed by Saman Bemel-Benrud from The Noun Project
+       Fast Food designed by Jinju Jang from The Noun Project */
+    NSArray *imageNames = @[@"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
     
     cell.textLabel.text = [sections objectAtIndex:indexPath.row];
     cell.textLabel.font = [UIFont fontWithName:@"Palatino" size:18.0];
+    cell.imageView.image = [UIImage imageNamed:[imageNames objectAtIndex:indexPath.row]];
     
     return cell;
 }
 
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
