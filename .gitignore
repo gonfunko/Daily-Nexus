@@ -6,3 +6,5 @@ Daily Nexus.xcodeproj/xcuserdata/Aaron.xcuserdatad/xcschemes/Daily Nexus.xcschem
 Daily Nexus.xcodeproj/xcuserdata/Aaron.xcuserdatad/xcschemes/xcschememanagement.plist
 
 *.xcsettings
+
+.DS_Store
