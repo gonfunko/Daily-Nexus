@@ -354,6 +354,11 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
         sanitizedString = [sanitizedString substringFromIndex:location + 12];
     }
     
+    location = [sanitizedString rangeOfString:@"Reporter"].location;
+    if (location != NSNotFound && location < 100) {
+        sanitizedString = [sanitizedString substringFromIndex:location + 8];
+    }
+    
     // Just to be safe, nuke any whitespace/newlines at the beginning or end of the string
     sanitizedString = [sanitizedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
