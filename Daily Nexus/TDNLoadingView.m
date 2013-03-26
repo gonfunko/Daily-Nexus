@@ -85,7 +85,7 @@
 - (void)layoutSubviews {
     // This horrible mess of text handles positioning the loading text and Storke Tower image nicely.
     // You shouldn't edit it, and if you do, it should just be thrown out and done from scratch
-    if (self.frame.size.height > self.imageView.frame.size.height) {
+    if (self.frame.size.height > self.imageView.frame.size.height + 100) {
         self.imageView.frame = CGRectMake((self.frame.size.width - self.imageView.frame.size.width) / 2, self.frame.size.height - self.imageView.frame.size.height + 10, self.imageView.frame.size.width, self.imageView.frame.size.height);
         self.loadingText.frame = CGRectMake((self.frame.size.width - self.loadingText.frame.size.width) / 2, self.imageView.frame.origin.y - self.loadingText.frame.size.height - 30, self.loadingText.frame.size.width, self.loadingText.frame.size.height);
     } else {
