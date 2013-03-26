@@ -13,6 +13,7 @@
     // Set up our background view
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
     self.tableView.backgroundView = backgroundView;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.title = @"Sections";
 }
@@ -29,7 +30,7 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[TDNEtchedSeparatorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];

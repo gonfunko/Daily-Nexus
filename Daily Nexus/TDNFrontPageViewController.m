@@ -80,7 +80,6 @@
     [self.loadingView removeFromSuperview];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         self.tableView.scrollEnabled = YES;
     }
     
@@ -171,7 +170,7 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
+        cell = [[TDNEtchedSeparatorTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         // Configure the appearance of the cell's subviews
         cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         cell.textLabel.highlightedTextColor = [UIColor colorWithWhite:0.2 alpha:1.0];
