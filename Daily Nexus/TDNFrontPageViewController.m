@@ -13,6 +13,7 @@
 @property (retain) UITableView *tableView;
 @property (retain) UICollectionView *collectionView;
 @property (retain) NSArray *cellSizes;
+@property (retain) UIView *loadingView;
 
 @end
 
@@ -20,6 +21,8 @@
 
 @synthesize tableView;
 @synthesize collectionView;
+@synthesize loadingView;
+@synthesize cellSizes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -39,6 +42,8 @@
         self.tableView.backgroundView = backgroundView;
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.scrollEnabled = NO;
     } else {
         self.collectionView = (UICollectionView *)self.view;
         self.collectionView.backgroundView = backgroundView;
@@ -59,6 +64,11 @@
                                                                              style:UIBarButtonItemStyleBordered
                                                                             target:self.parentViewController.parentViewController
                                                                             action:@selector(toggleLeftDrawer)];
+    
+    self.loadingView = [[TDNLoadingView alloc] initWithFrame:self.view.frame];
+    self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.loadingView];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,6 +77,13 @@
 
 - (void)articleManagerDidFinishLoading {
     // When the article manager finishes downloading, we load images and update the list of articles
+    [self.loadingView removeFromSuperview];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.scrollEnabled = YES;
+    }
+    
     [self loadImages];
     [self generateCellSizes];
     [self reloadData];

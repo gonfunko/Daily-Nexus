@@ -11,6 +11,7 @@
 #import "TDNArticleManager.h"
 #import "TDNArticleViewController.h"
 #import "TDNArticleCollectionViewCell.h"
+#import "TDNLoadingView.h"
 
 @interface TDNFrontPageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, TDNArticleManagerDelegate>
 

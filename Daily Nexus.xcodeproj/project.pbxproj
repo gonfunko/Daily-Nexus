@@ -50,6 +50,9 @@
 		93CE7AD817011D3400DF66C0 /* news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE7AD017011D3400DF66C0 /* news@2x.png */; };
 		93CE7AD917011D3400DF66C0 /* sports.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE7AD117011D3400DF66C0 /* sports.png */; };
 		93CE7ADA17011D3400DF66C0 /* sports@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE7AD217011D3400DF66C0 /* sports@2x.png */; };
+		93CE7ADD17012A3100DF66C0 /* storketower.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE7ADB17012A3100DF66C0 /* storketower.png */; };
+		93CE7ADE17012A3100DF66C0 /* storketower@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93CE7ADC17012A3100DF66C0 /* storketower@2x.png */; };
+		93CE7AE117012A6600DF66C0 /* TDNLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CE7AE017012A6600DF66C0 /* TDNLoadingView.m */; };
 		93DE942016FBFEE600A6D657 /* TDNFrontPageTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */; };
 		93FB5CA116F932C800D592B0 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA016F932C800D592B0 /* Icon-72@2x.png */; };
 		93FB5CA316F9332400D592B0 /* NoiseBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 93FB5CA216F9332400D592B0 /* NoiseBackground.png */; };
@@ -125,6 +128,10 @@
 		93CE7AD017011D3400DF66C0 /* news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "news@2x.png"; sourceTree = "<group>"; };
 		93CE7AD117011D3400DF66C0 /* sports.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sports.png; sourceTree = "<group>"; };
 		93CE7AD217011D3400DF66C0 /* sports@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sports@2x.png"; sourceTree = "<group>"; };
+		93CE7ADB17012A3100DF66C0 /* storketower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = storketower.png; sourceTree = "<group>"; };
+		93CE7ADC17012A3100DF66C0 /* storketower@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "storketower@2x.png"; sourceTree = "<group>"; };
+		93CE7ADF17012A6600DF66C0 /* TDNLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNLoadingView.h; sourceTree = "<group>"; };
+		93CE7AE017012A6600DF66C0 /* TDNLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNLoadingView.m; sourceTree = "<group>"; };
 		93DE941F16FBFEE600A6D657 /* TDNFrontPageTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNFrontPageTableView.xib; sourceTree = "<group>"; };
 		93FB5CA016F932C800D592B0 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		93FB5CA216F9332400D592B0 /* NoiseBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoiseBackground.png; sourceTree = "<group>"; };
@@ -172,6 +179,8 @@
 		9363652416FF9C5300E3153B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				93CE7ADB17012A3100DF66C0 /* storketower.png */,
+				93CE7ADC17012A3100DF66C0 /* storketower@2x.png */,
 				93CE7ABB17011D2B00DF66C0 /* features.png */,
 				93CE7ABC17011D2B00DF66C0 /* features@2x.png */,
 				93CE7ABD17011D2B00DF66C0 /* online.png */,
@@ -232,6 +241,8 @@
 				9363651216FE5C5900E3153B /* TDNArticleViewController.m */,
 				93BF9DD31700CC97005FCC7C /* TDNSectionViewController.h */,
 				93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */,
+				93CE7ADF17012A6600DF66C0 /* TDNLoadingView.h */,
+				93CE7AE017012A6600DF66C0 /* TDNLoadingView.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -434,6 +445,8 @@
 				93CE7AD817011D3400DF66C0 /* news@2x.png in Resources */,
 				93CE7AD917011D3400DF66C0 /* sports.png in Resources */,
 				93CE7ADA17011D3400DF66C0 /* sports@2x.png in Resources */,
+				93CE7ADD17012A3100DF66C0 /* storketower.png in Resources */,
+				93CE7ADE17012A3100DF66C0 /* storketower@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,6 +493,7 @@
 				9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */,
 				93BF9DD21700C52D005FCC7C /* TDNSlidingDrawerViewController.m in Sources */,
 				93BF9DD61700CC97005FCC7C /* TDNSectionViewController.m in Sources */,
+				93CE7AE117012A6600DF66C0 /* TDNLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
