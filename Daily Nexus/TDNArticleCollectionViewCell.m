@@ -36,21 +36,21 @@
         title.numberOfLines = 0;
         title.lineBreakMode = NSLineBreakByWordWrapping;
         title.font = [UIFont fontWithName:@"Palatino-Bold" size:24.0];
-        title.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+        title.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         title.backgroundColor = [UIColor clearColor];
         title.opaque = YES;
         
         byline.numberOfLines = 0;
         byline.lineBreakMode = NSLineBreakByWordWrapping;
         byline.font = [UIFont fontWithName:@"Palatino" size:12.0];
-        byline.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+        byline.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         byline.backgroundColor = [UIColor clearColor];
         byline.opaque = YES;
         
         story.numberOfLines = 5;
         story.lineBreakMode = NSLineBreakByWordWrapping;
         story.font = [UIFont fontWithName:@"Palatino" size:16.0];
-        story.textColor = [UIColor colorWithWhite:0.3 alpha:1.0];
+        story.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         story.backgroundColor = [UIColor clearColor];
         story.opaque = YES;
         

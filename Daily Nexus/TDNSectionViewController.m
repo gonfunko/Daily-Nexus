@@ -30,6 +30,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        
+        UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+        selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+        cell.selectedBackgroundView = selectedBackgroundView;
+        
+        cell.textLabel.font = [UIFont fontWithName:@"Palatino" size:18.0];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+        cell.textLabel.highlightedTextColor = [UIColor colorWithWhite:0.2 alpha:1.0];
     }
     
     NSArray *sections = @[@"Feature", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
@@ -45,7 +53,6 @@
     NSArray *imageNames = @[@"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
     
     cell.textLabel.text = [sections objectAtIndex:indexPath.row];
-    cell.textLabel.font = [UIFont fontWithName:@"Palatino" size:18.0];
     cell.imageView.image = [UIImage imageNamed:[imageNames objectAtIndex:indexPath.row]];
     
     return cell;

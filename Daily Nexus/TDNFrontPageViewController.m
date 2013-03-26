@@ -173,11 +173,13 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
         // Configure the appearance of the cell's subviews
-        cell.textLabel.textColor = [UIColor colorWithRed:30/255.0 green:30/255.0 blue:30/255.0 alpha:1.0];
+        cell.textLabel.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
+        cell.textLabel.highlightedTextColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         cell.textLabel.font = [UIFont fontWithName:@"Palatino-Bold" size:18.0];
         
         cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        cell.detailTextLabel.textColor = [UIColor colorWithRed:80/255.0 green:80/255.0 blue:80/255.0 alpha:1.0];
+        cell.detailTextLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+        cell.detailTextLabel.highlightedTextColor = [UIColor colorWithWhite:0.5 alpha:1.0];
         cell.detailTextLabel.numberOfLines = 3;
         cell.detailTextLabel.font = [UIFont fontWithName:@"Palatino" size:13.0];
         
@@ -189,6 +191,10 @@
         
         // And add a disclosure triangle to the cell
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
+        selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
+        cell.selectedBackgroundView = selectedBackgroundView;
     }
     
     // Set the main text of the cell to the article title

@@ -44,11 +44,11 @@
     [self.window makeKeyAndVisible];
     
     // Configure the global appearance of instances of UINavigationBar
-    NSDictionary *navigationBarTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithRed:40.0/255.0 green:40.0/255.0 blue:40.0/255.0 alpha:1.0],
+    NSDictionary *navigationBarTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.2 alpha:1.0],
                                                   UITextAttributeTextShadowColor : [UIColor whiteColor],
                                                   UITextAttributeFont            : [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0]};
     
-    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithRed:60.0/255.0 green:60.0/255.0 blue:60.0/255.0 alpha:1.0],
+    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.2 alpha:1.0],
                                                UITextAttributeTextShadowColor : [UIColor whiteColor],
                                                UITextAttributeFont            : [UIFont fontWithName:@"Palatino" size:13.0]};
     

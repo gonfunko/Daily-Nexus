@@ -30,7 +30,7 @@
         loadingText = [[UILabel alloc] init];
         loadingText.text = @"Loading\u2026";
         loadingText.font = [UIFont fontWithName:@"Palatino-Bold" size:30.0];
-        loadingText.textColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+        loadingText.textColor = [UIColor colorWithWhite:0.2 alpha:1.0];
         loadingText.shadowColor = [UIColor whiteColor];
         loadingText.shadowOffset = CGSizeMake(0, 1);
         loadingText.backgroundColor = [UIColor clearColor];
