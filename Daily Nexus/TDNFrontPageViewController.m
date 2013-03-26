@@ -204,15 +204,7 @@
    
     // If the article has any images, add the first one to the cell
     if ([article.images count] != 0) {
-        // We want the image to be square, so draw the image into a square graphics context and use the resulting image
-        CGSize size = CGSizeMake(70, 70);
-        
-        UIGraphicsBeginImageContext(size);
-        [[article.images objectAtIndex:0] drawInRect:CGRectMake(0, 0, size.width, size.height)];
-        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        cell.imageView.image = scaledImage;
+        cell.imageView.image = [[article.images objectAtIndex:0] imageByScalingAndCroppingForSize:CGSizeMake(70, 70)];
     } else {
         // If we don't have any images, set it to nil in case this cell is being reused
         cell.imageView.image = nil;

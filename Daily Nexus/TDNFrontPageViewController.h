@@ -13,6 +13,7 @@
 #import "TDNArticleCollectionViewCell.h"
 #import "TDNLoadingView.h"
 #import "TDNEtchedSeparatorTableViewCell.h"
+#import "UIImage+TDNAdditions.h"
 
 @interface TDNFrontPageViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, TDNArticleManagerDelegate>
 
