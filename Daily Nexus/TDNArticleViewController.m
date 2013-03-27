@@ -23,8 +23,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NoiseBackground"]];
     
-    // Disable vertical scrolling and bouncing (because the webview irritatingly draws shadows. It'd be nice to have bounce)
-    self.webview.scrollView.showsVerticalScrollIndicator = NO;
+    // Disable vertical scrolling on the iPad and bouncing (because the webview irritatingly draws shadows. It'd be nice to have bounce)
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
+        self.webview.scrollView.showsVerticalScrollIndicator = NO;
+    }
+    
     self.webview.scrollView.bounces = NO;
     
     // Get the HTML representation of our article and load it
