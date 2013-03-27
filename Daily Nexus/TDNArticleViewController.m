@@ -37,6 +37,31 @@
     if ([self.article.categories count] != 0) {
         self.title = [self.article.categories objectAtIndex:0];
     }
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showShareSheet:)];
+}
+
+- (void)showShareSheet:(id)sender {
+    // Create and display a share sheet with the article's contents/link
+    UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self] applicationActivities:nil];
+    activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToWeibo];
+    [self presentViewController:activityController animated:YES completion:nil];
+}
+
+- (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType {
+    if ([activityType isEqualToString:UIActivityTypePostToFacebook] ||
+        [activityType isEqualToString:UIActivityTypePostToTwitter] ||
+        [activityType isEqualToString:UIActivityTypeMessage]) {
+        // If we're providing data for a short message based service, just return the story's URL
+        return [NSURL URLWithString:self.article.url];
+    } else {
+        // Otherwise, return the actual story text
+        return self.article.story;
+    }
+}
+
+- (id)activityViewControllerPlaceholderItem:(UIActivityViewController *)activityViewController {
+    return self.article.story;
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
