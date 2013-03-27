@@ -9,6 +9,6 @@
 
 @interface NSString (TDNAdditions)
 
-- (NSString *)sanitizedString;
+- (NSString *)strippedString;
 
 @end

@@ -318,39 +318,39 @@ static HTMLEscapeMap gAsciiHTMLEscapeMap[] = {
     { @"&diams;", 9830 }
 };
 
-- (NSString *)sanitizedString {
+- (NSString *)strippedString {
     // This is basically a series of hacks to attempt to clean up and normalize the highly irregular contents
     // of the Daily Nexus RSS feed.
     // First, remove paragraphs containing a space (yes, that happens) so we don't get tons of newlines
-    NSString *sanitizedString = [self stringByReplacingOccurrencesOfString:@"<p>&nbsp;</p>" withString:@""];
+    NSString *strippedString = [self stringByReplacingOccurrencesOfString:@"<p>&nbsp;</p>" withString:@""];
     // Then, remove all actual newlines so we can put them only where we want them
-    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    strippedString = [strippedString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     // Replace HTML escape codes with their corresponding character
-    sanitizedString = [sanitizedString gtm_stringByUnescapingFromHTML];
+    strippedString = [strippedString gtm_stringByUnescapingFromHTML];
     // Replace closing paragraph tags with two newlines so there's a line break between paragraphs
-    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
+    strippedString = [strippedString stringByReplacingOccurrencesOfString:@"</p>" withString:@"\n\n"];
     // Replace br tags with a space, because sometimes articles show up in the feed pre-wrapped, and if we just nuke
     // the tags, words will get mashed together
-    sanitizedString = [sanitizedString stringByReplacingOccurrencesOfString:@"<br />" withString:@" "];
+    strippedString = [strippedString stringByReplacingOccurrencesOfString:@"<br />" withString:@" "];
     // Strip out all remaining HTML tags
-    sanitizedString = [sanitizedString flattenHTML:sanitizedString];
+    strippedString = [strippedString flattenHTML:strippedString];
     
     // If the phrase "Staff Writer" appears near the beginning of the text, remove it and everything before it
     // We already have a byline, and this just breaks the story summaries
-    NSUInteger location = [sanitizedString rangeOfString:@"Staff Writer"].location;
+    NSUInteger location = [strippedString rangeOfString:@"Staff Writer"].location;
     if (location != NSNotFound && location < 100) {
-        sanitizedString = [sanitizedString substringFromIndex:location + 12];
+        strippedString = [strippedString substringFromIndex:location + 12];
     }
     
-    location = [sanitizedString rangeOfString:@"Reporter"].location;
+    location = [strippedString rangeOfString:@"Reporter"].location;
     if (location != NSNotFound && location < 100) {
-        sanitizedString = [sanitizedString substringFromIndex:location + 8];
+        strippedString = [strippedString substringFromIndex:location + 8];
     }
     
     // Just to be safe, nuke any whitespace/newlines at the beginning or end of the string
-    sanitizedString = [sanitizedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    strippedString = [strippedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
-    return sanitizedString;
+    return strippedString;
 }
 
 - (NSString *)gtm_stringByUnescapingFromHTML {

@@ -63,22 +63,22 @@
     // the contents of currentElementData. In all cases, we want to sanitize this value first to strip
     // whitespace, replace HTML escape sequences and remove tags
     if ([elementName isEqualToString:@"title"]) {
-        self.currentArticle.title = [self.currentElementData sanitizedString];
+        self.currentArticle.title = [self.currentElementData strippedString];
     } else if ([elementName isEqualToString:@"dc:creator"]) {
-        self.currentArticle.author = [self.currentElementData sanitizedString];
+        self.currentArticle.author = [self.currentElementData strippedString];
     } else if ([elementName isEqualToString:@"link"]) {
-        self.currentArticle.url = [self.currentElementData sanitizedString];
+        self.currentArticle.url = [self.currentElementData strippedString];
     } else if ([elementName isEqualToString:@"content:encoded"]) {
         TDNMultimediaParser *multimediaParser = [[TDNMultimediaParser alloc] init];
         [self.currentArticle.imageURLs addObjectsFromArray:[multimediaParser multimediaURLsFromStoryBody:self.currentElementData]];
-        self.currentArticle.story = [self.currentElementData sanitizedString];
+        self.currentArticle.story = [self.currentElementData strippedString];
         self.currentArticle.rawStory = self.currentElementData;
     } else if ([elementName isEqualToString:@"pubDate"]) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"EEE, dd MMM yyyy HH:mm:ss Z"];
-        self.currentArticle.publicationDate = [formatter dateFromString:[self.currentElementData sanitizedString]];
+        self.currentArticle.publicationDate = [formatter dateFromString:[self.currentElementData strippedString]];
     } else if ([elementName isEqualToString:@"category"]) {
-        [self.currentArticle.categories addObject:[self.currentElementData sanitizedString]];
+        [self.currentArticle.categories addObject:[self.currentElementData strippedString]];
     } else if ([elementName isEqualToString:@"item"]) {
         // In the case where we finished parsing an item element, we're done with this article, so add it to the array
         [self.articles addObject:self.currentArticle];
