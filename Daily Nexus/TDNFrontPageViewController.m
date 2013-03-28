@@ -26,6 +26,7 @@
     [super viewDidLoad];
     // Draw the noise texture behind the list of articles
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
+    backgroundView.contentMode = UIViewContentModeCenter;
     
     // Download the latest articles
     [TDNArticleManager sharedManager].delegate = self;

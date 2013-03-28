@@ -22,6 +22,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     // Set up our background view
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
+    backgroundView.contentMode = UIViewContentModeCenter;
     self.tableView.backgroundView = backgroundView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

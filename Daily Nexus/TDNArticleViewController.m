@@ -21,7 +21,10 @@
 @synthesize columnated;
 
 - (void)viewWillAppear:(BOOL)animated {
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"NoiseBackground"]];
+    UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
+    backgroundView.contentMode = UIViewContentModeCenter;
+    backgroundView.frame = self.view.frame;
+    [self.view insertSubview:backgroundView atIndex:0];
     
     // Disable vertical scrolling on the iPad and bouncing (because the webview irritatingly draws shadows. It'd be nice to have bounce)
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
