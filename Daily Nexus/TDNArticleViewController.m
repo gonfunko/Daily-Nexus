@@ -26,12 +26,25 @@
     backgroundView.frame = self.view.frame;
     [self.view insertSubview:backgroundView atIndex:0];
     
-    // Disable vertical scrolling on the iPad and bouncing (because the webview irritatingly draws shadows. It'd be nice to have bounce)
+    self.webview.scrollView.bounces = YES;
+    
+    // Disable vertical scrolling on the iPad and horizontal scrolling on the iPhone
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
         self.webview.scrollView.showsVerticalScrollIndicator = NO;
+        self.webview.scrollView.alwaysBounceHorizontal = YES;
+        self.webview.scrollView.alwaysBounceVertical = NO;
+    } else {
+        self.webview.scrollView.alwaysBounceHorizontal = NO;
+        self.webview.scrollView.alwaysBounceVertical = YES;
     }
     
-    self.webview.scrollView.bounces = NO;
+    // Hide any image views on the webview to hide its shadow. This is an awful hack, and should be
+    // replaced if or when APIs to do so become available
+    for (UIView *view in self.webview.scrollView.subviews) {
+        if ([view isKindOfClass:[UIImageView class]]) {
+            view.hidden = YES;
+        }
+    }
     
     // Get the HTML representation of our article and load it
     NSString *html = [self.article htmlRepresentationWithHeight:self.view.frame.size.height - 45 andColumns:self.columnated];
