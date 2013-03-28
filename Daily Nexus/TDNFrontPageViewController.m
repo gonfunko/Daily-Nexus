@@ -165,8 +165,8 @@
         cell.imageView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
         cell.imageView.layer.shouldRasterize = YES;
         
-        // And add a disclosure triangle to the cell
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        // And add a disclosure triangle to the cell using an image so it doesn't turn white when selected
+        cell.accessoryView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"chevron"]];
         
         UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectZero];
         selectedBackgroundView.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.1];
