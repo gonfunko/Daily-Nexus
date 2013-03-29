@@ -44,6 +44,22 @@
     return byline;
 }
 
+// Just use titles for testing equality. This could be expanded to compare all properties, but for our purposes this is sufficient
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:[self class]]) {
+        TDNArticle *otherArticle = object;
+        if ([otherArticle.title isEqualToString:self.title]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (NSUInteger)hash {
+    return [self.title hash];
+}
+
 - (NSString *)description {
     // Generate a reasonably nice representation of the article for debugging
     NSMutableString *articleDescription = [NSMutableString stringWithFormat:@"%@\nPublished %@ by %@\n%@\nCategories: %@\nImages: %@\n%@", self.title, [self.publicationDate description], self.author, self.url, [self.categories description], [self.imageURLs description], self.story];
