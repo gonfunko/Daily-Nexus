@@ -28,6 +28,8 @@
     backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:backgroundView atIndex:0];
     
+    self.webview.delegate = self;
+    
     self.webview.scrollView.bounces = YES;
     
     // Disable vertical scrolling on the iPad and horizontal scrolling on the iPhone
@@ -96,6 +98,15 @@
     
     if ([self.article.categories count] != 0) {
         self.title = [self.article.categories objectAtIndex:0];
+    }
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    if ([[request.URL absoluteString] isEqualToString:@"http://www.dailynexus.com/"]) {
+        return YES;
+    } else {
+        [[UIApplication sharedApplication] openURL:request.URL];
+        return NO;
     }
 }
 
