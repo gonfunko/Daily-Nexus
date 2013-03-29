@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "TDNArticleManager.h"
 #import "TDNArticle.h"
 
 @interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate>

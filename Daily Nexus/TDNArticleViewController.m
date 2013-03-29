@@ -48,14 +48,6 @@
         }
     }
     
-    // Get the HTML representation of our article and load it
-    NSString *html = [self.article htmlRepresentationWithHeight:self.view.frame.size.height - 45 andColumns:self.columnated];
-    [self.webview loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.dailynexus.com"]];
-    
-    if ([self.article.categories count] != 0) {
-        self.title = [self.article.categories objectAtIndex:0];
-    }
-    
     // Set up and add the share button to the right of the navigation bar
     UIButton *shareButton = [[UIButton alloc] init];
     [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
@@ -79,16 +71,57 @@
     self.navigationItem.leftBarButtonItem = backBarButtonItem;
     self.navigationItem.hidesBackButton = YES;
     
-    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] init];
-    tapRecognizer.numberOfTapsRequired = 2;
-    tapRecognizer.delegate = self;
+    // Set up a tap recognizer for two taps
+    UITapGestureRecognizer *twoTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    twoTapRecognizer.numberOfTapsRequired = 2;
+    twoTapRecognizer.delegate = self;
+    [self.webview addGestureRecognizer:twoTapRecognizer];
     
-    [self.view addGestureRecognizer:tapRecognizer];
+    // Set up another tap recognizer for three taps
+    UITapGestureRecognizer *threeTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    threeTapRecognizer.numberOfTapsRequired = 3;
+    threeTapRecognizer.delegate = self;
+    [self.webview addGestureRecognizer:threeTapRecognizer];
+    
+    // Make sure the two tap recognizer only gets called if there's no third tap
+    [twoTapRecognizer requireGestureRecognizerToFail:threeTapRecognizer];
+    
+    [self loadCurrentArticle];
+}
+
+- (void)loadCurrentArticle {
+    // Get the HTML representation of our article and load it
+    NSString *html = [self.article htmlRepresentationWithHeight:self.view.frame.size.height - 45 andColumns:self.columnated];
+    [self.webview loadHTMLString:html baseURL:[NSURL URLWithString:@"http://www.dailynexus.com"]];
+    
+    if ([self.article.categories count] != 0) {
+        self.title = [self.article.categories objectAtIndex:0];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    // We need to allow both the two and three tap gestures to be simultaneously recognized
+    return YES;
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender {
+    // Make sure the gesture recognizer has recognized the full gesture
     if (sender.state == UIGestureRecognizerStateEnded) {
+        // If so, identify the index of the article we're currently displaying
+        NSInteger currentArticle = [[TDNArticleManager sharedManager].articles indexOfObject:self.article];
         
+        if (currentArticle != NSNotFound) {
+            // If we recognized two taps and this isn't the last article, advance to the next one
+            if (sender.numberOfTapsRequired == 2 && currentArticle + 1 < [[TDNArticleManager sharedManager].articles count]) {
+                self.article = [[TDNArticleManager sharedManager].articles objectAtIndex:currentArticle + 1];
+            // If we instead recognized three taps and this isn't the first article, advance to the previous one
+            } else if (sender.numberOfTapsRequired == 3 && currentArticle - 1 >= 0) {
+                self.article = [[TDNArticleManager sharedManager].articles objectAtIndex:currentArticle - 1];
+            }
+        }
+        
+        // Load the new article
+        [self loadCurrentArticle];
     }
 }
 
