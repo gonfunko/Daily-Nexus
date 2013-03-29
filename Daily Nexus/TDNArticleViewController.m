@@ -54,7 +54,18 @@
         self.title = [self.article.categories objectAtIndex:0];
     }
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(showShareSheet:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(showShareSheet:)];
+    UIButton *favButton = [[UIButton alloc] init];
+    
+    [favButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [favButton addTarget:self action:@selector(showShareSheet:)
+        forControlEvents:UIControlEventTouchUpInside];
+    favButton.frame = CGRectMake(0, 0, 40, 30);
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]
+                               initWithCustomView:favButton];
+    
+    self.navigationItem.rightBarButtonItem = button;
 }
 
 - (void)showShareSheet:(id)sender {
