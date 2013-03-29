@@ -24,6 +24,8 @@
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
     backgroundView.contentMode = UIViewContentModeCenter;
     backgroundView.frame = self.view.frame;
+    backgroundView.layer.masksToBounds = YES;
+    backgroundView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [self.view insertSubview:backgroundView atIndex:0];
     
     self.webview.scrollView.bounces = YES;
@@ -54,18 +56,28 @@
         self.title = [self.article.categories objectAtIndex:0];
     }
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(showShareSheet:)];
-    UIButton *favButton = [[UIButton alloc] init];
+    // Set up and add the share button to the right of the navigation bar
+    UIButton *shareButton = [[UIButton alloc] init];
+    [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [shareButton addTarget:self
+                    action:@selector(showShareSheet:)
+          forControlEvents:UIControlEventTouchUpInside];
+    shareButton.frame = CGRectMake(0, 0, 40, 30);
     
-    [favButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
-    [favButton addTarget:self action:@selector(showShareSheet:)
-        forControlEvents:UIControlEventTouchUpInside];
-    favButton.frame = CGRectMake(0, 0, 40, 30);
+    UIBarButtonItem *shareBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:shareButton];
+    self.navigationItem.rightBarButtonItem = shareBarButtonItem;
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc]
-                               initWithCustomView:favButton];
+    // Set up and configure the back button, and hide the system default
+    UIButton *backButton = [[UIButton alloc] init];
+    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backButton addTarget:self.navigationController
+                   action:@selector(popViewControllerAnimated:)
+         forControlEvents:UIControlEventTouchUpInside];
+    backButton.frame = CGRectMake(0, 0, 44, 44);
     
-    self.navigationItem.rightBarButtonItem = button;
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    self.navigationItem.leftBarButtonItem = backBarButtonItem;
+    self.navigationItem.hidesBackButton = YES;
 }
 
 - (void)showShareSheet:(id)sender {

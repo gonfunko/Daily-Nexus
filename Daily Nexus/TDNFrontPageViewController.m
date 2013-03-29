@@ -53,21 +53,23 @@
         [self.collectionView registerClass:[TDNArticleCollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     }
     
-    // Specify the back button that will be used when we push a view controller on the stack
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Articles"
-                                                                             style:UIBarButtonItemStyleBordered
-                                                                            target:nil
-                                                                            action:nil];
+    // Create the button to display the navigation drawer
+    UIButton *navigationButton = [[UIButton alloc] init];
+    [navigationButton setImage:[UIImage imageNamed:@"sidebar"] forState:UIControlStateNormal];
+    [navigationButton addTarget:self.parentViewController.parentViewController
+                         action:@selector(toggleLeftDrawer)
+               forControlEvents:UIControlEventTouchUpInside];
+    navigationButton.frame = CGRectMake(0, 0, 50, 44);
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sections"
-                                                                             style:UIBarButtonItemStyleBordered
-                                                                            target:self.parentViewController.parentViewController
-                                                                            action:@selector(toggleLeftDrawer)];
+    // ...and add it to the navigation bar
+    UIBarButtonItem *navigationBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:navigationButton];
+    self.navigationItem.leftBarButtonItem = navigationBarButtonItem;
     
     self.loadingView = [[TDNLoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.loadingView];
     
+    // Listen for changes to the selected article category so we can load the appropriate articles
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(changeSection:)
                                                  name:@"TDNSectionChangedNotification"

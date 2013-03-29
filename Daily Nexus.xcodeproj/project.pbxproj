@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93205A6B1705305D000D3198 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205A6A1705305D000D3198 /* back.png */; };
+		93205A6D17053248000D3198 /* sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205A6C17053248000D3198 /* sidebar@2x.png */; };
 		932DB1A0170500B2007DEE5C /* chevron.png in Resources */ = {isa = PBXBuildFile; fileRef = 932DB19E170500B2007DEE5C /* chevron.png */; };
 		932DB1A1170500B2007DEE5C /* chevron@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932DB19F170500B2007DEE5C /* chevron@2x.png */; };
 		932DB1A517050B9A007DEE5C /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 932DB1A417050B9A007DEE5C /* share@2x.png */; };
@@ -16,6 +18,8 @@
 		9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */; };
 		9363652016FF980400E3153B /* TDNFrontPageCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */; };
 		9363652316FF9BA800E3153B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363652116FF9B9C00E3153B /* QuartzCore.framework */; };
+		93AA886C17053743005472BB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AA886B17053743005472BB /* share.png */; };
+		93AA887017053A2F005472BB /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AA886F17053A2F005472BB /* sidebar.png */; };
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
 		93AB5D1316F904C100EF6A8A /* TDNArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1216F904C100EF6A8A /* TDNArticle.m */; };
 		93AB5D1616F90CCF00EF6A8A /* TDNFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */; };
@@ -78,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		93205A6A1705305D000D3198 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		93205A6C17053248000D3198 /* sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar@2x.png"; sourceTree = "<group>"; };
 		932DB19E170500B2007DEE5C /* chevron.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chevron.png; sourceTree = "<group>"; };
 		932DB19F170500B2007DEE5C /* chevron@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chevron@2x.png"; sourceTree = "<group>"; };
 		932DB1A417050B9A007DEE5C /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
@@ -89,6 +95,8 @@
 		9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleCollectionViewCell.m; sourceTree = "<group>"; };
 		9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNFrontPageCollectionView.xib; sourceTree = "<group>"; };
 		9363652116FF9B9C00E3153B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		93AA886B17053743005472BB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		93AA886F17053A2F005472BB /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleManager.h; sourceTree = "<group>"; };
 		93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleManager.m; sourceTree = "<group>"; };
 		93AB5D1116F904C100EF6A8A /* TDNArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticle.h; sourceTree = "<group>"; };
@@ -195,7 +203,11 @@
 		9363652416FF9C5300E3153B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				93AA886F17053A2F005472BB /* sidebar.png */,
+				93205A6C17053248000D3198 /* sidebar@2x.png */,
+				93205A6A1705305D000D3198 /* back.png */,
 				932DB1A617050F81007DEE5C /* back@2x.png */,
+				93AA886B17053743005472BB /* share.png */,
 				932DB1A417050B9A007DEE5C /* share@2x.png */,
 				93CE7ADB17012A3100DF66C0 /* storketower.png */,
 				93CE7ADC17012A3100DF66C0 /* storketower@2x.png */,
@@ -473,6 +485,10 @@
 				932DB1A1170500B2007DEE5C /* chevron@2x.png in Resources */,
 				932DB1A517050B9A007DEE5C /* share@2x.png in Resources */,
 				932DB1A717050F81007DEE5C /* back@2x.png in Resources */,
+				93205A6B1705305D000D3198 /* back.png in Resources */,
+				93205A6D17053248000D3198 /* sidebar@2x.png in Resources */,
+				93AA886C17053743005472BB /* share.png in Resources */,
+				93AA887017053A2F005472BB /* sidebar.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
