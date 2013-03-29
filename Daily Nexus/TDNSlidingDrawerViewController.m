@@ -52,6 +52,15 @@
     self.mainViewController.view.layer.shadowPath = path;
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    if (self.leftDrawerVisible) {
+        [self toggleLeftDrawer];
+    } else if (self.rightDrawerVisible) {
+        [self toggleRightDrawer];
+    }
+}
+
 - (void)toggleLeftDrawer {
     
     // If the right drawer is visible, ignore the request to toggle the left drawer
@@ -75,6 +84,8 @@
         
         // Note that the left drawer is no longer visible
         self.leftDrawerVisible = NO;
+
+        self.mainViewController.view.userInteractionEnabled = YES;
         
     } else {
         // If the left drawer is not visible, add the left view controller and its view as children and subviews, respectively
@@ -107,6 +118,8 @@
         
         // Note that the left drawer is now visible
         self.leftDrawerVisible = YES;
+        
+        self.mainViewController.view.userInteractionEnabled = NO;
     }
 }
 
@@ -134,6 +147,7 @@
         // Note that the right drawer is no longer visible
         self.rightDrawerVisible = NO;
         
+        self.mainViewController.view.userInteractionEnabled = YES;
     } else {
         // If the right drawer is not visible, add the right view controller and its view as children and subviews, respectively
         [self addChildViewController:self.rightViewController];
@@ -165,6 +179,8 @@
         
         // Note that the right drawer is now visible
         self.rightDrawerVisible = YES;
+        
+        self.mainViewController.view.userInteractionEnabled = NO;
     }
 
 }
