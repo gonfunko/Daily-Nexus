@@ -10,7 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticle.h"
 
-@interface TDNArticleViewController : UIViewController <UIWebViewDelegate>
+@interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
 @property (retain) TDNArticle *article;
 @property (assign) BOOL columnated;

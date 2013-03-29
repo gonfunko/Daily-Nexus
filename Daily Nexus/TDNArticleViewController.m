@@ -78,6 +78,18 @@
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     self.navigationItem.leftBarButtonItem = backBarButtonItem;
     self.navigationItem.hidesBackButton = YES;
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] init];
+    tapRecognizer.numberOfTapsRequired = 2;
+    tapRecognizer.delegate = self;
+    
+    [self.view addGestureRecognizer:tapRecognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        
+    }
 }
 
 - (void)showShareSheet:(id)sender {
