@@ -51,6 +51,8 @@
     CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
     self.mainViewController.view.layer.shadowPath = path;
     
+    // If we have a right view controller, detect swipes to the left and reveal it when they occur
+    // (it only seems counterintuitive until you think about it)
     if (self.rightViewController != nil) {
         UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
         leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
@@ -58,6 +60,7 @@
         [self.mainViewController.view addGestureRecognizer:leftSwipeRecognizer];
     }
     
+    // Do the inverse if we have a left view controller
     if (self.leftViewController != nil) {
         UISwipeGestureRecognizer *rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
         rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
@@ -66,8 +69,14 @@
     }
 }
 
+
+/* When we show a drawer, we disable user interaction on the main view controller's view, causing it
+   to pass touch events up the responder chain to ourself. The drawer view controller views will eat touch events,
+   so this method is only called when a touch occurs on the main view controller's view when a drawer is open */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [super touchesBegan:touches withEvent:event];
+    
+    // If we have a drawer visible, close it in response to the touch on the main view
     if (self.leftDrawerVisible) {
         [self toggleLeftDrawer];
     } else if (self.rightDrawerVisible) {
@@ -80,6 +89,7 @@
     return YES;
 }
 
+// When we recognize a swipe, show the appropriate drawer based on the swipe's direction
 - (void)handleSwipe:(UISwipeGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
