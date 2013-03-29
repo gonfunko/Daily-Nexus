@@ -11,7 +11,7 @@
 #import "TDNArticleManager.h"
 #import "TDNArticle.h"
 
-@interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate>
+@interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate>
 
 @property (retain) TDNArticle *article;
 @property (assign) BOOL columnated;

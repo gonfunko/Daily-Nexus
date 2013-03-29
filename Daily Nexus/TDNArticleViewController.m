@@ -11,6 +11,7 @@
 @interface TDNArticleViewController ()
 
 @property (retain, nonatomic) IBOutlet UIWebView *webview;
+@property (retain) UIPopoverController *popoverController;
 
 @end
 
@@ -19,6 +20,7 @@
 @synthesize article;
 @synthesize webview;
 @synthesize columnated;
+@synthesize popoverController;
 
 - (void)viewWillAppear:(BOOL)animated {
     UIImageView *backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NoiseBackground"]];
@@ -136,11 +138,28 @@
     }
 }
 
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
+    self.popoverController = nil;
+}
+
 - (void)showShareSheet:(id)sender {
     // Create and display a share sheet with the article's contents/link
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self] applicationActivities:nil];
     activityController.excludedActivityTypes = @[UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll, UIActivityTypePostToWeibo];
-    [self presentViewController:activityController animated:YES completion:nil];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self presentViewController:activityController animated:YES completion:nil];
+    } else {
+        if (self.popoverController == nil) {
+            self.popoverController = [[UIPopoverController alloc] initWithContentViewController:activityController];
+            self.popoverController.delegate = self;
+            [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem
+                                           permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                           animated:YES];
+        } else {
+            [self.popoverController dismissPopoverAnimated:YES];
+            self.popoverController = nil;
+        }
+    }
 }
 
 - (id)activityViewController:(UIActivityViewController *)activityViewController itemForActivityType:(NSString *)activityType {
