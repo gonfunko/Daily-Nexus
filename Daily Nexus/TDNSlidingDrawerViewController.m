@@ -50,6 +50,20 @@
     self.mainViewController.view.layer.shadowRadius = 3.0;
     CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
     self.mainViewController.view.layer.shadowPath = path;
+    
+    if (self.rightViewController != nil) {
+        UISwipeGestureRecognizer *leftSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        leftSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+        leftSwipeRecognizer.delegate = self;
+        [self.mainViewController.view addGestureRecognizer:leftSwipeRecognizer];
+    }
+    
+    if (self.leftViewController != nil) {
+        UISwipeGestureRecognizer *rightSwipeRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipe:)];
+        rightSwipeRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+        rightSwipeRecognizer.delegate = self;
+        [self.mainViewController.view addGestureRecognizer:rightSwipeRecognizer];
+    }
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -58,6 +72,21 @@
         [self toggleLeftDrawer];
     } else if (self.rightDrawerVisible) {
         [self toggleRightDrawer];
+    }
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    // We need to allow both the left and right swipe gestures to be simultaneously recognized
+    return YES;
+}
+
+- (void)handleSwipe:(UISwipeGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+            [self toggleRightDrawer];
+        } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+            [self toggleLeftDrawer];
+        }
     }
 }
 
@@ -138,7 +167,6 @@
                             options:UIViewAnimationOptionCurveLinear
                          animations:^{ self.mainViewController.view.frame = CGRectMake(0, 0, self.mainViewController.view.frame.size.width, self.mainViewController.view.frame.size.height); }
                          completion:^(BOOL finished) {
-                             NSLog(@"removed");
                              [self.rightViewController.view removeFromSuperview];
                              [self.rightViewController willMoveToParentViewController:nil];
                              [self.rightViewController removeFromParentViewController];

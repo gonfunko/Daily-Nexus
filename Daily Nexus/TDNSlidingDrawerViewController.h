@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 
-@interface TDNSlidingDrawerViewController : UIViewController
+@interface TDNSlidingDrawerViewController : UIViewController <UIGestureRecognizerDelegate>
 
 @property (retain) UIViewController *mainViewController;
 @property (retain) UIViewController *leftViewController;
