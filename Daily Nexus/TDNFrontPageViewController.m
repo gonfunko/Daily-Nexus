@@ -82,6 +82,7 @@
 }
 
 - (void)articleManagerDidStartLoading {
+    self.loadingView.frame = self.view.frame;
     [self.view addSubview:self.loadingView];
 }
 
