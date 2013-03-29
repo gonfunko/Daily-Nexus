@@ -91,11 +91,18 @@
 
 // When we recognize a swipe, show the appropriate drawer based on the swipe's direction
 - (void)handleSwipe:(UISwipeGestureRecognizer *)recognizer {
+    /* We only want to handle the swipe if (1) the gesture is done and (2) the navigation stack has
+       only one view controller or there is no navigation stack. This is more tightly coupled to the
+       nature of the main view controller than I'd like, but I wasn't able to come up with a better 
+       way to only allow swipes when the article list is visible */
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
-            [self toggleRightDrawer];
-        } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
-            [self toggleLeftDrawer];
+        if (![mainViewController isKindOfClass:[UINavigationController class]] ||
+            ([mainViewController isKindOfClass:[UINavigationController class]] && [((UINavigationController *)mainViewController).viewControllers count] == 1)) {
+            if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+                [self toggleRightDrawer];
+            } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+                [self toggleLeftDrawer];
+            }
         }
     }
 }
