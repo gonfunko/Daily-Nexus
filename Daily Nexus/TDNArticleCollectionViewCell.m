@@ -52,6 +52,9 @@
         story.backgroundColor = [UIColor clearColor];
         story.opaque = YES;
         
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.layer.masksToBounds = YES;
+        
         // Actually make them subviews
         [self addSubview:title];
         [self addSubview:byline];
@@ -89,7 +92,10 @@
     verticalOffset += self.byline.frame.size.height + 10;
     
     if (self.imageView.image != nil) {
-        self.imageView.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, ((self.frame.size.width - 20) / imageView.image.size.width) * imageView.image.size.height);
+        /* Make sure we have some text showing, even if the image is portrait – set the height to the
+           lesser of the image's height when scaled to the desired width, or the total cell height
+           minus 203 (the 3 is to avoid truncating descenders on the article text) */
+        self.imageView.frame = CGRectMake(10, verticalOffset, self.frame.size.width - 20, MIN(((self.frame.size.width - 20) / imageView.image.size.width) * imageView.image.size.height, self.frame.size.height - 203));
         verticalOffset += self.imageView.frame.size.height + 10;
     }
     
