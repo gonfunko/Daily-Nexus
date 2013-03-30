@@ -138,10 +138,6 @@
     }
 }
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController {
-    self.popoverController = nil;
-}
-
 - (void)showShareSheet:(id)sender {
     // Create and display a share sheet with the article's contents/link
     UIActivityViewController *activityController = [[UIActivityViewController alloc] initWithActivityItems:@[self] applicationActivities:nil];
@@ -150,6 +146,9 @@
         [self presentViewController:activityController animated:YES completion:nil];
     } else {
         if (self.popoverController == nil) {
+            activityController.completionHandler = ^(NSString *activityType, BOOL completed) {
+                self.popoverController = nil;
+            };
             self.popoverController = [[UIPopoverController alloc] initWithContentViewController:activityController];
             self.popoverController.delegate = self;
             [self.popoverController presentPopoverFromBarButtonItem:self.navigationItem.rightBarButtonItem
