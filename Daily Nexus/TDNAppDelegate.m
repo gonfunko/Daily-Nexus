@@ -46,17 +46,21 @@
     // Configure the global appearance of instances of UINavigationBar
     NSDictionary *navigationBarTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.2 alpha:1.0],
                                                   UITextAttributeTextShadowColor : [UIColor whiteColor],
-                                                  UITextAttributeFont            : [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:20.0]};
+                                                  UITextAttributeFont            : [UIFont fontWithName:@"Bodoni 72 Oldstyle" size:0.0]};
     
-    NSDictionary *backButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.2 alpha:1.0],
+    NSDictionary *buttonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.2 alpha:1.0],
                                                UITextAttributeTextShadowColor : [UIColor whiteColor],
-                                               UITextAttributeFont            : [UIFont fontWithName:@"Palatino" size:13.0]};
+                                               UITextAttributeFont            : [UIFont fontWithName:@"Palatino" size:0.0]};
+    NSDictionary *disabledButtonTextAttributes = @{UITextAttributeTextColor       : [UIColor colorWithWhite:0.5 alpha:1.0],
+                                               UITextAttributeTextShadowColor : [UIColor whiteColor],
+                                               UITextAttributeFont            : [UIFont fontWithName:@"Palatino" size:0.0]};
     
     [[UINavigationBar appearance] setTitleTextAttributes:navigationBarTextAttributes];
     [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"white"] forBarMetrics:UIBarMetricsDefault];
     [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:backButtonTextAttributes forState:UIControlStateNormal];
-    [[UIBarButtonItem appearance] setTitleTextAttributes:backButtonTextAttributes forState:UIControlStateHighlighted];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateNormal];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateHighlighted];
+    [[UIBarButtonItem appearance] setTitleTextAttributes:disabledButtonTextAttributes forState:UIControlStateDisabled];
     
     return YES;
 }
