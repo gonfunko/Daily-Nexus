@@ -11,6 +11,7 @@
 
 @property (retain) NSArray *sections;
 @property (retain) NSArray *images;
+@property (assign) NSInteger selectedIndex;
 
 @end
 
@@ -18,6 +19,11 @@
 
 @synthesize sections;
 @synthesize images;
+@synthesize selectedIndex;
+
+- (void)viewDidLoad {
+    self.selectedIndex = 0;
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     // Set up our background view
@@ -41,6 +47,10 @@
     
     self.images = @[@"recent", @"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
     [self.tableView reloadData];
+    
+    [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:self.selectedIndex inSection:0]
+                                animated:NO
+                          scrollPosition:UITableViewScrollPositionTop];
     
     self.title = @"Sections";
 }
@@ -77,7 +87,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"TDNSectionChangedNotification" object:[self.sections objectAtIndex:indexPath.row]];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    self.selectedIndex = indexPath.row;
     
     [self.parentViewController.parentViewController performSelector:@selector(toggleLeftDrawer)];
 }
