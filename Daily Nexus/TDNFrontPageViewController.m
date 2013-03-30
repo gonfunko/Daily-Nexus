@@ -30,7 +30,7 @@
     
     // Download the latest articles
     [TDNArticleManager sharedManager].delegate = self;
-    [[TDNArticleManager sharedManager] loadArticlesInSection:@""];
+    [[TDNArticleManager sharedManager] loadArticlesInSection:@"Most Recent"];
     
     self.title = @"The Daily Nexus";
     

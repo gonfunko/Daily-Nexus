@@ -26,9 +26,7 @@
     self.tableView.backgroundView = backgroundView;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    self.title = @"Sections";
-    
-    self.sections = @[@"Features", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
+    self.sections = @[@"Most Recent", @"Features", @"News", @"Sports", @"Opinion", @"Artsweek", @"On the Menu", @"Science & Tech", @"Online"];
     
     /* Image credits:
      Star from The Noun Project
@@ -38,9 +36,13 @@
      Newspaper designed by John Caserta from The Noun Project
      Gymnasium designed by Edward Boatman, Mike Clare & Jessica Durkin from The Noun Project
      Art Gallery designed by Saman Bemel-Benrud from The Noun Project
-     Fast Food designed by Jinju Jang from The Noun Project */
+     Fast Food designed by Jinju Jang from The Noun Project
+     Calendar designed by Adrijan Karavdić from The Noun Project */
     
-    self.images = @[@"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
+    self.images = @[@"recent", @"features", @"news", @"sports", @"opinion", @"art", @"food", @"science", @"online"];
+    [self.tableView reloadData];
+    
+    self.title = @"Sections";
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

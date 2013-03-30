@@ -53,7 +53,7 @@
                                @"On the Menu"    : @"http://dailynexus.com/category/on-the-menu/feed/",
                                @"Science & Tech" : @"http://dailynexus.com/category/science/feed/",
                                @"Online"         : @"http://dailynexus.com/category/online-2/feed/",
-                               @""               : @"http://dailynexus.com/feed/"};
+                               @"Most Recent"    : @"http://dailynexus.com/feed/"};
     
     // Create a request to download the main RSS feed
     NSURL *feedURL = [NSURL URLWithString:[feedURLs objectForKey:section]];
