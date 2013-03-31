@@ -39,6 +39,7 @@
         self.webview.scrollView.showsVerticalScrollIndicator = NO;
         self.webview.scrollView.alwaysBounceHorizontal = YES;
         self.webview.scrollView.alwaysBounceVertical = NO;
+        self.webview.scrollView.delegate = self;
     } else {
         self.webview.scrollView.alwaysBounceHorizontal = NO;
         self.webview.scrollView.alwaysBounceVertical = YES;
@@ -90,7 +91,15 @@
     // Make sure the two tap recognizer only gets called if there's no third tap
     [twoTapRecognizer requireGestureRecognizerToFail:threeTapRecognizer];
     
+    // Enabled swiping to the left to show comments
+    [self.parentViewController.parentViewController performSelector:@selector(setLeftSwipeEnabled:) withObject:[NSNumber numberWithBool:YES]];
+    
     [self loadCurrentArticle];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // Disable swiping to the left to show comments
+    [self.parentViewController.parentViewController performSelector:@selector(setLeftSwipeEnabled:) withObject:[NSNumber numberWithBool:NO]];
 }
 
 - (void)loadCurrentArticle {
@@ -103,12 +112,26 @@
     }
 }
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self scrollViewDidEndDecelerating:webview.scrollView];
+}
+
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     if ([[request.URL absoluteString] isEqualToString:@"http://www.dailynexus.com/"]) {
         return YES;
     } else {
         [[UIApplication sharedApplication] openURL:request.URL];
         return NO;
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (scrollView.contentOffset.x + scrollView.frame.size.width == scrollView.contentSize.width) {
+            [self.parentViewController.parentViewController performSelector:@selector(setLeftSwipeEnabled:) withObject:[NSNumber numberWithBool:YES]];
+        } else {
+            [self.parentViewController.parentViewController performSelector:@selector(setLeftSwipeEnabled:) withObject:[NSNumber numberWithBool:NO]];
+        }
     }
 }
 
@@ -127,9 +150,11 @@
             // If we recognized two taps and this isn't the last article, advance to the next one
             if (sender.numberOfTapsRequired == 2 && currentArticle + 1 < [[TDNArticleManager sharedManager].articles count]) {
                 self.article = [[TDNArticleManager sharedManager].articles objectAtIndex:currentArticle + 1];
+                [TDNArticleManager sharedManager].currentArticle = self.article;
             // If we instead recognized three taps and this isn't the first article, advance to the previous one
             } else if (sender.numberOfTapsRequired == 3 && currentArticle - 1 >= 0) {
                 self.article = [[TDNArticleManager sharedManager].articles objectAtIndex:currentArticle - 1];
+                [TDNArticleManager sharedManager].currentArticle = self.article;
             }
         }
         
@@ -181,6 +206,7 @@
     // After we rotate, change the height of the main container div to whatever the new view height is
     NSString *heightChange = [NSString stringWithFormat:@"document.getElementById('container').style.height = '%fpx';", self.view.frame.size.height - 45];
     [self.webview stringByEvaluatingJavaScriptFromString:heightChange];
+    [self scrollViewDidEndDecelerating:self.webview.scrollView];
 }
 
 - (void)dismissArticleView {

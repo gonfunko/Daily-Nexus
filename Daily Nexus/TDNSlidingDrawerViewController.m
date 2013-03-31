@@ -13,6 +13,8 @@
 
 @property (assign) BOOL leftDrawerVisible;
 @property (assign) BOOL rightDrawerVisible;
+@property (retain) NSNumber *leftSwipeEnabled;
+@property (retain) NSNumber *rightSwipeEnabled;
 
 @end
 
@@ -23,6 +25,8 @@
 @synthesize rightViewController;
 @synthesize leftDrawerVisible;
 @synthesize rightDrawerVisible;
+@synthesize leftSwipeEnabled;
+@synthesize rightSwipeEnabled;
 
 // Initialize ourself with a nib and three view controllers
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil mainViewController:(UIViewController *)main leftViewController:(UIViewController *)left andRightViewController:(UIViewController *)right {
@@ -30,6 +34,8 @@
         mainViewController = main;
         leftViewController = left;
         rightViewController = right;
+        leftSwipeEnabled = [NSNumber numberWithBool:NO];
+        rightSwipeEnabled = [NSNumber numberWithBool:NO];
     }
     
     return self;
@@ -96,14 +102,11 @@
        nature of the main view controller than I'd like, but I wasn't able to come up with a better 
        way to only allow swipes when the article list is visible */
     if (recognizer.state == UIGestureRecognizerStateEnded) {
-        if (![mainViewController isKindOfClass:[UINavigationController class]] ||
-            ([mainViewController isKindOfClass:[UINavigationController class]] && [((UINavigationController *)mainViewController).viewControllers count] == 1)) {
-            if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+            if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft && [self.leftSwipeEnabled boolValue]) {
                 [self toggleRightDrawer];
-            } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+            } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight && [self.rightSwipeEnabled boolValue]) {
                 [self toggleLeftDrawer];
             }
-        }
     }
 }
 

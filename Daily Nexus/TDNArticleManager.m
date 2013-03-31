@@ -19,6 +19,7 @@
 @synthesize articles;
 @synthesize parser;
 @synthesize delegate;
+@synthesize currentArticle;
 
 - (id)init {
     if (self = [super init]) {

@@ -79,6 +79,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [self reloadData];
+    [self.parentViewController.parentViewController performSelector:@selector(setRightSwipeEnabled:) withObject:[NSNumber numberWithBool:YES]];
+    [TDNArticleManager sharedManager].currentArticle = nil;
 }
 
 - (void)articleManagerDidStartLoading {
@@ -201,6 +203,9 @@
     articleViewController.columnated = NO;
     [self.navigationController pushViewController:articleViewController animated:YES];
     
+    [TDNArticleManager sharedManager].currentArticle = articleViewController.article;
+    [self.parentViewController.parentViewController performSelector:@selector(setRightSwipeEnabled:) withObject:[NSNumber numberWithBool:NO]];
+    
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -244,6 +249,9 @@
     articleViewController.article = [[TDNArticleManager sharedManager].articles objectAtIndex:indexPath.row];
     articleViewController.columnated = YES;
     [self.navigationController pushViewController:articleViewController animated:YES];
+    
+    [TDNArticleManager sharedManager].currentArticle = articleViewController.article;
+    [self.parentViewController.parentViewController performSelector:@selector(setRightSwipeEnabled:) withObject:[NSNumber numberWithBool:NO]];
     
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
 }

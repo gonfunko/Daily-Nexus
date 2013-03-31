@@ -18,6 +18,7 @@
 @synthesize categories;
 @synthesize images;
 @synthesize imageURLs;
+@synthesize comments;
 
 - (id)init {
     if (self = [super init]) {

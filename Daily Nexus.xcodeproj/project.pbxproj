@@ -23,6 +23,12 @@
 		93135B07170795B90021F825 /* TDNAboutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93135B06170795B90021F825 /* TDNAboutView.xib */; };
 		93135B091707A9720021F825 /* credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 93135B081707A9720021F825 /* credits.html */; };
 		93135B0C1707A9B10021F825 /* TDNAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93135B0B1707A9B00021F825 /* TDNAboutViewController.m */; };
+		93135B0F1707DBFC0021F825 /* TDNCommentsParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 93135B0E1707DBFC0021F825 /* TDNCommentsParser.m */; };
+		93135B121707DC6F0021F825 /* TDNComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 93135B111707DC6F0021F825 /* TDNComment.m */; };
+		93135B161707E3680021F825 /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 93135B141707E2660021F825 /* XPathQuery.m */; };
+		93135B191707E3920021F825 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93135B171707E3870021F825 /* libxml2.2.dylib */; };
+		93135B1D1707FD7E0021F825 /* TDNCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93135B1B1707FD7D0021F825 /* TDNCommentsViewController.m */; };
+		93135B1E1707FD7E0021F825 /* TDNCommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93135B1C1707FD7E0021F825 /* TDNCommentsViewController.xib */; };
 		93205A6B1705305D000D3198 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205A6A1705305D000D3198 /* back.png */; };
 		93205A6D17053248000D3198 /* sidebar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93205A6C17053248000D3198 /* sidebar@2x.png */; };
 		9320988C1706582300AB9DA7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9320988B1706582300AB9DA7 /* Icon@2x.png */; };
@@ -116,6 +122,16 @@
 		93135B081707A9720021F825 /* credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = credits.html; sourceTree = "<group>"; };
 		93135B0A1707A9B00021F825 /* TDNAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNAboutViewController.h; sourceTree = "<group>"; };
 		93135B0B1707A9B00021F825 /* TDNAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNAboutViewController.m; sourceTree = "<group>"; };
+		93135B0D1707DBFC0021F825 /* TDNCommentsParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCommentsParser.h; sourceTree = "<group>"; };
+		93135B0E1707DBFC0021F825 /* TDNCommentsParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCommentsParser.m; sourceTree = "<group>"; };
+		93135B101707DC6F0021F825 /* TDNComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNComment.h; sourceTree = "<group>"; };
+		93135B111707DC6F0021F825 /* TDNComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNComment.m; sourceTree = "<group>"; };
+		93135B131707E2660021F825 /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XPathQuery.h; sourceTree = "<group>"; };
+		93135B141707E2660021F825 /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XPathQuery.m; sourceTree = "<group>"; };
+		93135B171707E3870021F825 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		93135B1A1707FD7D0021F825 /* TDNCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCommentsViewController.h; sourceTree = "<group>"; };
+		93135B1B1707FD7D0021F825 /* TDNCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCommentsViewController.m; sourceTree = "<group>"; };
+		93135B1C1707FD7E0021F825 /* TDNCommentsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNCommentsViewController.xib; sourceTree = "<group>"; };
 		93205A6A1705305D000D3198 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		93205A6C17053248000D3198 /* sidebar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sidebar@2x.png"; sourceTree = "<group>"; };
 		9320988B1706582300AB9DA7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -204,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93135B191707E3920021F825 /* libxml2.2.dylib in Frameworks */,
 				93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */,
 				93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */,
 				9363652316FF9BA800E3153B /* QuartzCore.framework in Frameworks */,
@@ -295,6 +312,7 @@
 				9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */,
 				9363651316FE5C5900E3153B /* TDNArticleViewController.xib */,
 				93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */,
+				93135B1C1707FD7E0021F825 /* TDNCommentsViewController.xib */,
 				93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */,
 				93135B06170795B90021F825 /* TDNAboutView.xib */,
 			);
@@ -308,6 +326,8 @@
 				93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */,
 				93AB5D1116F904C100EF6A8A /* TDNArticle.h */,
 				93AB5D1216F904C100EF6A8A /* TDNArticle.m */,
+				93135B101707DC6F0021F825 /* TDNComment.h */,
+				93135B111707DC6F0021F825 /* TDNComment.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -323,6 +343,8 @@
 				9363651216FE5C5900E3153B /* TDNArticleViewController.m */,
 				93BF9DD31700CC97005FCC7C /* TDNSectionViewController.h */,
 				93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */,
+				93135B1A1707FD7D0021F825 /* TDNCommentsViewController.h */,
+				93135B1B1707FD7D0021F825 /* TDNCommentsViewController.m */,
 				93CE7ADF17012A6600DF66C0 /* TDNLoadingView.h */,
 				93CE7AE017012A6600DF66C0 /* TDNLoadingView.m */,
 				93135B0A1707A9B00021F825 /* TDNAboutViewController.h */,
@@ -338,6 +360,10 @@
 				93AB5D1516F90CCF00EF6A8A /* TDNFeedParser.m */,
 				93B2A18E16FA6F2500AC06D5 /* TDNMultimediaParser.h */,
 				93B2A18F16FA6F2500AC06D5 /* TDNMultimediaParser.m */,
+				93135B0D1707DBFC0021F825 /* TDNCommentsParser.h */,
+				93135B0E1707DBFC0021F825 /* TDNCommentsParser.m */,
+				93135B131707E2660021F825 /* XPathQuery.h */,
+				93135B141707E2660021F825 /* XPathQuery.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -375,6 +401,7 @@
 		93C9508316DEE94F00121B30 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93135B171707E3870021F825 /* libxml2.2.dylib */,
 				9363652116FF9B9C00E3153B /* QuartzCore.framework */,
 				93C9508416DEE94F00121B30 /* UIKit.framework */,
 				93C9508616DEE94F00121B30 /* Foundation.framework */,
@@ -558,6 +585,7 @@
 				93135B05170792F10021F825 /* Icon-Small@2x.png in Resources */,
 				93135B07170795B90021F825 /* TDNAboutView.xib in Resources */,
 				93135B091707A9720021F825 /* credits.html in Resources */,
+				93135B1E1707FD7E0021F825 /* TDNCommentsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,6 +636,10 @@
 				93CE7AE41701507000DF66C0 /* TDNEtchedSeparatorTableViewCell.m in Sources */,
 				93ED3C471701592C00896176 /* UIImage+TDNAdditions.m in Sources */,
 				93135B0C1707A9B10021F825 /* TDNAboutViewController.m in Sources */,
+				93135B0F1707DBFC0021F825 /* TDNCommentsParser.m in Sources */,
+				93135B121707DC6F0021F825 /* TDNComment.m in Sources */,
+				93135B161707E3680021F825 /* XPathQuery.m in Sources */,
+				93135B1D1707FD7E0021F825 /* TDNCommentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +745,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Daily Nexus/Daily Nexus-Prefix.pch";
+				HEADER_SEARCH_PATHS = $SDK_DIR/usr/include/libxml2;
 				INFOPLIST_FILE = "Daily Nexus/Daily Nexus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -726,6 +759,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Daily Nexus/Daily Nexus-Prefix.pch";
+				HEADER_SEARCH_PATHS = $SDK_DIR/usr/include/libxml2;
 				INFOPLIST_FILE = "Daily Nexus/Daily Nexus-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

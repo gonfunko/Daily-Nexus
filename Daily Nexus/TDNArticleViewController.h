@@ -10,8 +10,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticleManager.h"
 #import "TDNArticle.h"
+#import "TDNCommentsParser.h"
 
-@interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate>
+@interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate, UIScrollViewDelegate>
 
 @property (retain) TDNArticle *article;
 @property (assign) BOOL columnated;

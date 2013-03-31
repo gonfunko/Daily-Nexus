@@ -25,5 +25,6 @@
 
 @property (retain) id <TDNArticleManagerDelegate> delegate;
 @property (retain, readonly) NSArray *articles;
+@property (retain) TDNArticle *currentArticle;
 
 @end

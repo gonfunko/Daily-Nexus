@@ -18,6 +18,7 @@
 @property (retain) NSMutableArray *categories;
 @property (retain) NSMutableArray *imageURLs;
 @property (retain) NSMutableArray *images;
+@property (retain) NSArray *comments;
 
 - (NSString *)htmlRepresentationWithHeight:(NSInteger)height andColumns:(BOOL)columns;
 - (NSString *)byline;

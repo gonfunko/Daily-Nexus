@@ -9,6 +9,7 @@
 #import "TDNFrontPageViewController.h"
 #import "TDNSectionViewController.h"
 #import "TDNSlidingDrawerViewController.h"
+#import "TDNCommentsViewController.h"
 
 @interface TDNAppDelegate : UIResponder <UIApplicationDelegate>
 
