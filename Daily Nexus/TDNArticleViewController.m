@@ -66,8 +66,8 @@
     // Set up and configure the back button, and hide the system default
     UIButton *backButton = [[UIButton alloc] init];
     [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-    [backButton addTarget:self.navigationController
-                   action:@selector(popViewControllerAnimated:)
+    [backButton addTarget:self
+                   action:@selector(dismissArticleView)
          forControlEvents:UIControlEventTouchUpInside];
     backButton.frame = CGRectMake(0, 0, 44, 44);
     
@@ -181,6 +181,10 @@
     // After we rotate, change the height of the main container div to whatever the new view height is
     NSString *heightChange = [NSString stringWithFormat:@"document.getElementById('container').style.height = '%fpx';", self.view.frame.size.height - 45];
     [self.webview stringByEvaluatingJavaScriptFromString:heightChange];
+}
+
+- (void)dismissArticleView {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
