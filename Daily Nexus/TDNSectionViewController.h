@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TDNEtchedSeparatorTableViewCell.h"
+#import "TDNAboutViewController.h"
 
 @interface TDNSectionViewController : UITableViewController
 

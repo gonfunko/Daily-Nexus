@@ -53,6 +53,27 @@
                           scrollPosition:UITableViewScrollPositionTop];
     
     self.title = @"Sections";
+    
+    UIButton *aboutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [aboutButton setTitle:@"Daily Nexus 1.0" forState:UIControlStateNormal];
+    [aboutButton setTitleColor:[UIColor colorWithWhite:0.5 alpha:1.0] forState:UIControlStateNormal];
+    aboutButton.titleLabel.font = [UIFont fontWithName:@"Palatino" size:10.0];
+    aboutButton.backgroundColor = [UIColor clearColor];
+    [aboutButton addTarget:self
+                    action:@selector(showAboutView)
+          forControlEvents:UIControlEventTouchUpInside];
+    [aboutButton sizeToFit];
+    aboutButton.frame = CGRectMake(0,  self.view.frame.size.height - aboutButton.frame.size.height - 10, self.view.frame.size.width, 30);
+    self.tableView.tableFooterView = aboutButton;
+}
+
+- (void)showAboutView {
+    TDNAboutViewController *aboutViewController = [[TDNAboutViewController alloc] initWithNibName:@"TDNAboutView" bundle:[NSBundle mainBundle]];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:aboutViewController];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navController
+                       animated:YES
+                     completion:nil];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
