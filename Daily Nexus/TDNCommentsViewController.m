@@ -11,6 +11,7 @@
 
 @property (retain) UILabel *noCommentsLabel;
 @property (retain) UIActivityIndicatorView *loadingIndicator;
+@property (copy) NSString *commentNonce;
 
 @end
 
@@ -45,6 +46,16 @@
     self.loadingIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     self.loadingIndicator.color = [UIColor colorWithWhite:0.5 alpha:1.0];
     [self.tableView addSubview:self.loadingIndicator];
+    
+    UIButton *addCommentButton = [[UIButton alloc] init];
+    [addCommentButton setImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+    [addCommentButton addTarget:self
+                    action:@selector(addComment:)
+          forControlEvents:UIControlEventTouchUpInside];
+    addCommentButton.frame = CGRectMake(0, 0, 44, 44);
+    
+    UIBarButtonItem *addCommentButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addCommentButton];
+    self.navigationItem.rightBarButtonItem = addCommentButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,6 +87,10 @@
                                        NSArray *comments = [parser commentsFromSource:data];
                                        // Set the current article's comments
                                        [TDNArticleManager sharedManager].currentArticle.comments = comments;
+                                       
+                                       NSString *pageSource = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                       self.commentNonce = [pageSource substringWithRange:NSMakeRange([pageSource rangeOfString:@"name=\"akismet_comment_nonce\" value=\""].location + 36, 10)];
+                                       
                                        //Hide the loading indicator and reload the table
                                        [self.loadingIndicator stopAnimating];
                                        self.loadingIndicator.hidden = YES;
@@ -92,6 +107,15 @@
                                    }
                                }];
     }
+}
+
+- (void)addComment:(id)sender {
+    TDNCommentPostingViewController *commentPostingViewController = [[TDNCommentPostingViewController alloc] initWithNibName:@"TDNCommentPostingViewController" bundle:[NSBundle mainBundle]];
+    commentPostingViewController.article = [TDNArticleManager sharedManager].currentArticle;
+    commentPostingViewController.nonce = self.commentNonce;
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:commentPostingViewController];
+    navController.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - Table view data source

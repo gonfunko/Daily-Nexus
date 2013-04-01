@@ -19,6 +19,7 @@
 @synthesize images;
 @synthesize imageURLs;
 @synthesize comments;
+@synthesize postID;
 
 - (id)init {
     if (self = [super init]) {
@@ -28,6 +29,7 @@
         rawStory = @"";
         author = @"";
         url = @"";
+        postID = 0;
         publicationDate = [NSDate date];
         categories = [[NSMutableArray alloc] init];
         images = [[NSMutableArray alloc] init];

@@ -45,6 +45,8 @@
 		9363651E16FF7EF800E3153B /* TDNArticleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */; };
 		9363652016FF980400E3153B /* TDNFrontPageCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */; };
 		9363652316FF9BA800E3153B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363652116FF9B9C00E3153B /* QuartzCore.framework */; };
+		939E729A1708BDF000697E0D /* TDNCommentPostingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 939E72981708BDF000697E0D /* TDNCommentPostingViewController.m */; };
+		939E729B1708BDF000697E0D /* TDNCommentPostingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 939E72991708BDF000697E0D /* TDNCommentPostingViewController.xib */; };
 		93AA886C17053743005472BB /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AA886B17053743005472BB /* share.png */; };
 		93AA887017053A2F005472BB /* sidebar.png in Resources */ = {isa = PBXBuildFile; fileRef = 93AA886F17053A2F005472BB /* sidebar.png */; };
 		93AB5D1016F9014D00EF6A8A /* TDNArticleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93AB5D0F16F9014D00EF6A8A /* TDNArticleManager.m */; };
@@ -55,6 +57,8 @@
 		93BF9DD61700CC97005FCC7C /* TDNSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */; };
 		93BF9DD71700CC97005FCC7C /* TDNSectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */; };
 		93BF9DD91700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */; };
+		93C567C91708E4A3007CC3B6 /* add.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C567C71708E4A3007CC3B6 /* add.png */; };
+		93C567CA1708E4A3007CC3B6 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93C567C81708E4A3007CC3B6 /* add@2x.png */; };
 		93C9508516DEE94F00121B30 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508416DEE94F00121B30 /* UIKit.framework */; };
 		93C9508716DEE94F00121B30 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508616DEE94F00121B30 /* Foundation.framework */; };
 		93C9508916DEE94F00121B30 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93C9508816DEE94F00121B30 /* CoreGraphics.framework */; };
@@ -150,6 +154,9 @@
 		9363651D16FF7EF800E3153B /* TDNArticleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNArticleCollectionViewCell.m; sourceTree = "<group>"; };
 		9363651F16FF980400E3153B /* TDNFrontPageCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNFrontPageCollectionView.xib; sourceTree = "<group>"; };
 		9363652116FF9B9C00E3153B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		939E72971708BDF000697E0D /* TDNCommentPostingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNCommentPostingViewController.h; sourceTree = "<group>"; };
+		939E72981708BDF000697E0D /* TDNCommentPostingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNCommentPostingViewController.m; sourceTree = "<group>"; };
+		939E72991708BDF000697E0D /* TDNCommentPostingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNCommentPostingViewController.xib; sourceTree = "<group>"; };
 		93AA886B17053743005472BB /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		93AA886F17053A2F005472BB /* sidebar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebar.png; sourceTree = "<group>"; };
 		93AB5D0E16F9014D00EF6A8A /* TDNArticleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNArticleManager.h; sourceTree = "<group>"; };
@@ -166,6 +173,8 @@
 		93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNSectionViewController.m; sourceTree = "<group>"; };
 		93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNSectionViewController.xib; sourceTree = "<group>"; };
 		93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TDNSlidingDrawerViewController.xib; sourceTree = "<group>"; };
+		93C567C71708E4A3007CC3B6 /* add.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = add.png; sourceTree = "<group>"; };
+		93C567C81708E4A3007CC3B6 /* add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "add@2x.png"; sourceTree = "<group>"; };
 		93C9508116DEE94F00121B30 /* Daily Nexus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Nexus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C9508416DEE94F00121B30 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		93C9508616DEE94F00121B30 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -263,6 +272,8 @@
 				9320988B1706582300AB9DA7 /* Icon@2x.png */,
 				9320988F1706654D00AB9DA7 /* Icon-72.png */,
 				9320988D1706582600AB9DA7 /* Icon-72@2x.png */,
+				93C567C71708E4A3007CC3B6 /* add.png */,
+				93C567C81708E4A3007CC3B6 /* add@2x.png */,
 				93AA886F17053A2F005472BB /* sidebar.png */,
 				93205A6C17053248000D3198 /* sidebar@2x.png */,
 				93205A6A1705305D000D3198 /* back.png */,
@@ -313,6 +324,7 @@
 				9363651316FE5C5900E3153B /* TDNArticleViewController.xib */,
 				93BF9DD51700CC97005FCC7C /* TDNSectionViewController.xib */,
 				93135B1C1707FD7E0021F825 /* TDNCommentsViewController.xib */,
+				939E72991708BDF000697E0D /* TDNCommentPostingViewController.xib */,
 				93BF9DD81700D1C3005FCC7C /* TDNSlidingDrawerViewController.xib */,
 				93135B06170795B90021F825 /* TDNAboutView.xib */,
 			);
@@ -345,6 +357,8 @@
 				93BF9DD41700CC97005FCC7C /* TDNSectionViewController.m */,
 				93135B1A1707FD7D0021F825 /* TDNCommentsViewController.h */,
 				93135B1B1707FD7D0021F825 /* TDNCommentsViewController.m */,
+				939E72971708BDF000697E0D /* TDNCommentPostingViewController.h */,
+				939E72981708BDF000697E0D /* TDNCommentPostingViewController.m */,
 				93CE7ADF17012A6600DF66C0 /* TDNLoadingView.h */,
 				93CE7AE017012A6600DF66C0 /* TDNLoadingView.m */,
 				93135B0A1707A9B00021F825 /* TDNAboutViewController.h */,
@@ -586,6 +600,9 @@
 				93135B07170795B90021F825 /* TDNAboutView.xib in Resources */,
 				93135B091707A9720021F825 /* credits.html in Resources */,
 				93135B1E1707FD7E0021F825 /* TDNCommentsViewController.xib in Resources */,
+				939E729B1708BDF000697E0D /* TDNCommentPostingViewController.xib in Resources */,
+				93C567C91708E4A3007CC3B6 /* add.png in Resources */,
+				93C567CA1708E4A3007CC3B6 /* add@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -640,6 +657,7 @@
 				93135B121707DC6F0021F825 /* TDNComment.m in Sources */,
 				93135B161707E3680021F825 /* XPathQuery.m in Sources */,
 				93135B1D1707FD7E0021F825 /* TDNCommentsViewController.m in Sources */,
+				939E729A1708BDF000697E0D /* TDNCommentPostingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

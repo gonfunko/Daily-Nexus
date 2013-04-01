@@ -79,6 +79,8 @@
         self.currentArticle.publicationDate = [formatter dateFromString:[self.currentElementData strippedString]];
     } else if ([elementName isEqualToString:@"category"]) {
         [self.currentArticle.categories addObject:[self.currentElementData strippedString]];
+    } else if ([elementName isEqualToString:@"guid"]) {
+        self.currentArticle.postID = [[self.currentElementData substringFromIndex:[self.currentElementData length] - 5] integerValue];
     } else if ([elementName isEqualToString:@"item"]) {
         // In the case where we finished parsing an item element, we're done with this article, so add it to the array
         [self.articles addObject:self.currentArticle];

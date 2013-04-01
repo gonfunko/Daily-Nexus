@@ -10,6 +10,7 @@
 #import "TDNEtchedSeparatorTableViewCell.h"
 #import "TDNCommentsParser.h"
 #import "TDNComment.h"
+#import "TDNCommentPostingViewController.h"
 
 @interface TDNCommentsViewController : UITableViewController
 

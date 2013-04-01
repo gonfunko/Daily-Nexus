@@ -19,6 +19,7 @@
 @property (retain) NSMutableArray *imageURLs;
 @property (retain) NSMutableArray *images;
 @property (retain) NSArray *comments;
+@property (assign) NSInteger postID;
 
 - (NSString *)htmlRepresentationWithHeight:(NSInteger)height andColumns:(BOOL)columns;
 - (NSString *)byline;
