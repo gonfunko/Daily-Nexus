@@ -29,6 +29,8 @@
     
     self.title = @"Post Comment";
     
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"commentsName" : @"", @"commentsEmail" : @"" }];
+    
     UIBarButtonItem *postButton = [[UIBarButtonItem alloc] initWithTitle:@"Post"
                                                                    style:UIBarButtonItemStylePlain
                                                                   target:self
@@ -49,6 +51,7 @@
     self.name.layer.cornerRadius = 8.0;
     self.name.layer.masksToBounds = YES;
     self.name.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.name.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"commentsName"];
     
     self.email.layer.backgroundColor = [UIColor whiteColor].CGColor;
     self.email.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -56,6 +59,7 @@
     self.email.layer.cornerRadius = 8.0;
     self.email.layer.masksToBounds = YES;
     self.email.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+    self.email.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"commentsEmail"];
     
     self.comment.layer.backgroundColor = [UIColor whiteColor].CGColor;
     self.comment.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -77,7 +81,6 @@
 - (void)keyboardWillShow:(NSNotification*)aNotification {
     CGRect keyboardFrame = [[[aNotification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
     keyboardFrame = [self.view convertRect:keyboardFrame fromView:nil];
-    NSLog(@"%@", NSStringFromCGRect(keyboardFrame));
 
     double animationDuration = [[[aNotification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
     [UIView animateWithDuration:animationDuration
@@ -127,6 +130,10 @@
 }
 
 - (void)postComment:(id)sender {
+    
+    [[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"commentsName"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.email.text forKey:@"commentsEmail"];
+    
     CFStringRef escapedEmail = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.email.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
     CFStringRef escapedName = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.name.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
     CFStringRef escapedComment = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.comment.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
