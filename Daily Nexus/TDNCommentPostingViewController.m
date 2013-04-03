@@ -159,9 +159,14 @@
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                                if (data) {
-                                   NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                                   [self dismissViewControllerAnimated:YES completion:nil];
                                } else {
-                                   NSLog(@"%@", error.localizedDescription);
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to Post Comment"
+                                                                                   message:error.localizedDescription
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"OK"
+                                                                         otherButtonTitles:nil, nil];
+                                   [alert show];
                                }
                            }];
 }
