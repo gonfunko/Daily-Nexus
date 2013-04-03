@@ -62,7 +62,7 @@
     // Reload the table to reflect the comments for the current article (or lack thereof)
     [self.tableView reloadData];
     
-    // If there aren't any comments, we need to load them
+    // If there aren't any comments, show the loading indicator while we load them
     if ([TDNArticleManager sharedManager].currentArticle.comments == nil) {
         // Fix the positioning and visibility of the loading indicator and placeholder text
         self.noCommentsLabel.frame = CGRectMake((self.tableView.frame.size.width - self.noCommentsLabel.frame.size.width) / 2, (self.tableView.frame.size.height - self.noCommentsLabel.frame.size.height) / 2, self.noCommentsLabel.frame.size.width, self.noCommentsLabel.frame.size.height);
@@ -72,41 +72,41 @@
         self.loadingIndicator.hidden = NO;
         self.loadingIndicator.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
         [self.loadingIndicator startAnimating];
-        
-        // Set up a request for the article's page source
-        NSURL *articleURL = [NSURL URLWithString:[TDNArticleManager sharedManager].currentArticle.url];
-        NSURLRequest *articleRequest = [NSURLRequest requestWithURL:articleURL];
-
-        // Send the request
-        [NSURLConnection sendAsynchronousRequest:articleRequest
-                                           queue:[NSOperationQueue mainQueue]
-                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                                   if (data) {
-                                       // If we get data in response, create a parser and parse the comments
-                                       TDNCommentsParser *parser = [[TDNCommentsParser alloc] init];
-                                       NSArray *comments = [parser commentsFromSource:data];
-                                       // Set the current article's comments
-                                       [TDNArticleManager sharedManager].currentArticle.comments = comments;
-                                       
-                                       NSString *pageSource = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                                       self.commentNonce = [pageSource substringWithRange:NSMakeRange([pageSource rangeOfString:@"name=\"akismet_comment_nonce\" value=\""].location + 36, 10)];
-                                       
-                                       //Hide the loading indicator and reload the table
-                                       [self.loadingIndicator stopAnimating];
-                                       self.loadingIndicator.hidden = YES;
-                                       [self.tableView reloadData];
-                                   } else {
-                                       // If we didn't get any data, present an error
-                                       UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Loading Comments"
-                                                                                       message:error.localizedDescription
-                                                                                      delegate:nil
-                                                                             cancelButtonTitle:@"OK"
-                                                                             otherButtonTitles:nil, nil];
-                                       
-                                       [alert show];
-                                   }
-                               }];
     }
+    
+    // Set up a request for the article's page source
+    NSURL *articleURL = [NSURL URLWithString:[TDNArticleManager sharedManager].currentArticle.url];
+    NSURLRequest *articleRequest = [NSURLRequest requestWithURL:articleURL];
+
+    // Send the request
+    [NSURLConnection sendAsynchronousRequest:articleRequest
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if (data) {
+                                   // If we get data in response, create a parser and parse the comments
+                                   TDNCommentsParser *parser = [[TDNCommentsParser alloc] init];
+                                   NSArray *comments = [parser commentsFromSource:data];
+                                   // Set the current article's comments
+                                   [TDNArticleManager sharedManager].currentArticle.comments = comments;
+                                   
+                                   NSString *pageSource = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                                   self.commentNonce = [pageSource substringWithRange:NSMakeRange([pageSource rangeOfString:@"name=\"akismet_comment_nonce\" value=\""].location + 36, 10)];
+                                   
+                                   //Hide the loading indicator and reload the table
+                                   [self.loadingIndicator stopAnimating];
+                                   self.loadingIndicator.hidden = YES;
+                                   [self.tableView reloadData];
+                               } else {
+                                   // If we didn't get any data, present an error
+                                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error Loading Comments"
+                                                                                   message:error.localizedDescription
+                                                                                  delegate:nil
+                                                                         cancelButtonTitle:@"OK"
+                                                                         otherButtonTitles:nil, nil];
+                                   
+                                   [alert show];
+                               }
+                           }];
 }
 
 - (void)addComment:(id)sender {
