@@ -106,7 +106,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"TDNSectionChangedNotification" object:[self.sections objectAtIndex:indexPath.row]];
+    // Set the article manager's current section and load the appropriate articles
+    [TDNArticleManager sharedManager].currentSection = [self.sections objectAtIndex:indexPath.row];
+    [[TDNArticleManager sharedManager] removeAllArticles];
+    [[TDNArticleManager sharedManager] loadArticles];
     
     self.selectedIndex = indexPath.row;
     

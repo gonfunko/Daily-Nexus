@@ -65,7 +65,23 @@
     [[UIBarButtonItem appearance] setTitleTextAttributes:buttonTextAttributes forState:UIControlStateHighlighted];
     [[UIBarButtonItem appearance] setTitleTextAttributes:disabledButtonTextAttributes forState:UIControlStateDisabled];
     
+    [[NSUserDefaults standardUserDefaults] registerDefaults:@{ @"backgroundDate" : [NSDate date] }];
+    
     return YES;
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    // Note the time we entered the background
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"backgroundDate"];
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application {
+    // When we resume active, reload data if it's been more than 15 minutes since we entered the background
+    NSDate *backgroundDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"backgroundDate"];
+    if ([backgroundDate timeIntervalSinceNow] < -900) {
+        [[TDNArticleManager sharedManager] removeAllArticles];
+        [[TDNArticleManager sharedManager] loadArticles];
+    }
 }
 
 @end

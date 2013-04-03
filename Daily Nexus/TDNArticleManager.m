@@ -20,6 +20,7 @@
 @synthesize parser;
 @synthesize delegate;
 @synthesize currentArticle;
+@synthesize currentSection;
 
 - (id)init {
     if (self = [super init]) {
@@ -40,7 +41,7 @@
     return sharedManager;
 }
 
-- (void)loadArticlesInSection:(NSString *)section {
+- (void)loadArticles {
     
     if ([self.delegate respondsToSelector:@selector(articleManagerDidStartLoading)]) {
         [self.delegate articleManagerDidStartLoading];
@@ -57,7 +58,7 @@
                                @"Most Recent"    : @"http://dailynexus.com/feed/"};
     
     // Create a request to download the main RSS feed
-    NSURL *feedURL = [NSURL URLWithString:[feedURLs objectForKey:section]];
+    NSURL *feedURL = [NSURL URLWithString:[feedURLs objectForKey:self.currentSection]];
     NSURLRequest *feedDownloadRequest = [[NSURLRequest alloc] initWithURL:feedURL];
     
     // Attempt to load the feed

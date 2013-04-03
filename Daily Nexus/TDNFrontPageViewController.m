@@ -30,7 +30,8 @@
     
     // Download the latest articles
     [TDNArticleManager sharedManager].delegate = self;
-    [[TDNArticleManager sharedManager] loadArticlesInSection:@"Most Recent"];
+    [TDNArticleManager sharedManager].currentSection = @"Most Recent";
+    [[TDNArticleManager sharedManager] loadArticles];
     
     self.title = @"The Daily Nexus";
     
@@ -68,13 +69,6 @@
     self.loadingView = [[TDNLoadingView alloc] initWithFrame:self.view.frame];
     self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.loadingView];
-    
-    // Listen for changes to the selected article category so we can load the appropriate articles
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(changeSection:)
-                                                 name:@"TDNSectionChangedNotification"
-                                               object:nil];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -84,6 +78,7 @@
 }
 
 - (void)articleManagerDidStartLoading {
+    [self reloadData];
     self.loadingView.frame = self.view.frame;
     [self.view addSubview:self.loadingView];
 }
@@ -106,14 +101,6 @@
     } else {
         [self.collectionView reloadData];
     }
-}
-
-- (void)changeSection:(NSNotification *)notification {
-    NSString *section = notification.object;
-    
-    [[TDNArticleManager sharedManager] removeAllArticles];
-    [self reloadData];
-    [[TDNArticleManager sharedManager] loadArticlesInSection:section];
 }
 
 - (void)loadImages {
@@ -270,8 +257,6 @@
         self.collectionView.delegate = nil;
         self.collectionView.dataSource = nil;
     }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

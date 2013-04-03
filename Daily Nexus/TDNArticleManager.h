@@ -20,11 +20,12 @@
 @interface TDNArticleManager : NSObject
 
 + (TDNArticleManager *)sharedManager;
-- (void)loadArticlesInSection:(NSString *)section;
+- (void)loadArticles;
 - (void)removeAllArticles;
 
 @property (retain) id <TDNArticleManagerDelegate> delegate;
 @property (retain, readonly) NSArray *articles;
 @property (retain) TDNArticle *currentArticle;
+@property (copy) NSString *currentSection;
 
 @end
