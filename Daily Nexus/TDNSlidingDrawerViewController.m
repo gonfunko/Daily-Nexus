@@ -75,6 +75,11 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self layoutShadowsWithDuration:0];
+}
+
 
 /* When we show a drawer, we disable user interaction on the main view controller's view, causing it
    to pass touch events up the responder chain to ourself. The drawer view controller views will eat touch events,
@@ -234,7 +239,7 @@
 }
 
 // Workaround from http://blog.radi.ws/post/8348898129/calayers-shadowpath-and-uiview-autoresizing to update shadow path during rotation
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void)layoutShadowsWithDuration:(NSTimeInterval)duration {
     CGPathRef oldShadowPath = self.mainViewController.view.layer.shadowPath;
     
     if (oldShadowPath) {
@@ -245,16 +250,23 @@
     CGPathRef path = [UIBezierPath bezierPathWithRect:self.mainViewController.view.bounds].CGPath;
     self.mainViewController.view.layer.shadowPath = path;
 
-    if (oldShadowPath) {
-        [self.mainViewController.view.layer addAnimation:((^ {
-            CABasicAnimation *transition = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
-            transition.fromValue = (__bridge id)oldShadowPath;
-            transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-            transition.duration = duration;
-            return transition;
-        })()) forKey:@"transition"];
-        CFRelease(oldShadowPath);
+    // You would think setting duration to 0 would cause the animation added below to not animate. You would be wrong.
+    if (duration != 0) {
+        if (oldShadowPath) {
+            [self.mainViewController.view.layer addAnimation:((^ {
+                CABasicAnimation *transition = [CABasicAnimation animationWithKeyPath:@"shadowPath"];
+                transition.fromValue = (__bridge id)oldShadowPath;
+                transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+                transition.duration = duration;
+                return transition;
+            })()) forKey:@"transition"];
+            CFRelease(oldShadowPath);
+        }
     }
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self layoutShadowsWithDuration:duration];
 }
 
 @end
