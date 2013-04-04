@@ -56,6 +56,8 @@
     
     UIBarButtonItem *addCommentButtonItem = [[UIBarButtonItem alloc] initWithCustomView:addCommentButton];
     self.navigationItem.rightBarButtonItem = addCommentButtonItem;
+    
+    self.tableView.allowsSelection = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -177,11 +179,6 @@
     
     // Return the label's desired height, plus a bit more for padding/comment author names
     return desiredSize.height + 50;
-}
-
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
 }
 
 @end
