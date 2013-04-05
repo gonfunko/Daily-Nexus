@@ -82,6 +82,27 @@
     return self;
 }
 
+- (void)didMoveToSuperview {
+    // Reset our animations when our superview changes, since animations are removed when the layer goes offscreen
+    [self.light removeAllAnimations];
+    
+    CABasicAnimation *size = [CABasicAnimation animationWithKeyPath:@"path"];
+    size.duration = 1.8;
+    size.fromValue = (id)light.path;
+    size.toValue = (__bridge id)(CGPathCreateWithEllipseInRect(CGRectMake(0, 0, 10, 10), NULL));
+    size.repeatCount = INT_MAX;
+    size.autoreverses = YES;
+    [self.light addAnimation:size forKey:@"path"];
+    
+    CABasicAnimation *location = [CABasicAnimation animationWithKeyPath:@"bounds"];
+    location.duration = 1.8;
+    location.fromValue = [NSValue valueWithCGRect:light.bounds];
+    location.toValue = [NSValue valueWithCGRect:CGRectMake(0, 3, 10, 10)];
+    location.repeatCount = INT_MAX;
+    location.autoreverses = YES;
+    [self.light addAnimation:location forKey:@"bounds"];
+}
+
 - (void)layoutSubviews {
     // This horrible mess of text handles positioning the loading text and Storke Tower image nicely.
     // You shouldn't edit it, and if you do, it should just be thrown out and done from scratch
