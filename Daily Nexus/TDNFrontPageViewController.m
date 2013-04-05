@@ -118,6 +118,12 @@
                     // Assuming we did, try to create an image from it and make sure we succeed
                     UIImage *image = [UIImage imageWithData:data];
                     if (image) {
+                        // If the image is larger than the maximum dimensions we'll display it at, scale it down before we save it
+                        if (image.size.width > 360) {
+                            double ratio = 360 / image.size.width;
+                            image = [image imageByScalingAndCroppingForSize:CGSizeMake(360, ratio * image.size.height)];
+                        }
+                        
                         // If so, add the image to the article object and reload the table to show it
                         [article.images addObject:image];
                         [self reloadData];
