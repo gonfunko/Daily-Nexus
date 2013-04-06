@@ -58,6 +58,7 @@
         // Add the light layer
         [self.layer addSublayer:light];
         
+        //Animate the size and position of the light to create the pulsing glowing effect
         CABasicAnimation *size = [CABasicAnimation animationWithKeyPath:@"path"];
         size.duration = 1.8;
         size.fromValue = (id)light.path;

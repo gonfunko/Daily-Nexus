@@ -10,7 +10,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "TDNArticleManager.h"
 #import "TDNArticle.h"
-#import "TDNCommentsParser.h"
 
 @interface TDNArticleViewController : UIViewController <UIWebViewDelegate, UIGestureRecognizerDelegate, UIPopoverControllerDelegate, UIScrollViewDelegate>
 

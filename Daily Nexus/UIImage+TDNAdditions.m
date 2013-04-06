@@ -2,8 +2,7 @@
 //  UIImage+TDNAdditions.m
 //  Daily Nexus
 //
-//  Created by Aaron Dodson on 3/25/13.
-//  Copyright (c) 2013 Daily Nexus. All rights reserved.
+//  UIImage+TDNAdditions adds a method to UIImage to scale and crop images
 //
 
 #import "UIImage+TDNAdditions.h"

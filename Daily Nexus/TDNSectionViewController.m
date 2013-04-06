@@ -54,6 +54,7 @@
     
     self.title = @"Sections";
     
+    // Create a button to show the About window and add it as a footer view in the table
     UIButton *aboutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [aboutButton setTitle:@"Daily Nexus 1.0" forState:UIControlStateNormal];
     [aboutButton setTitleColor:[UIColor colorWithWhite:0.5 alpha:1.0] forState:UIControlStateNormal];

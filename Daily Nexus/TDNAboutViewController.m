@@ -69,6 +69,7 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    // We only want to load the main credits page - redirect all other requests to Safari
     if ([[request.URL absoluteString] isEqualToString:@"http://www.dailynexus.com/"]) {
         return YES;
     } else {

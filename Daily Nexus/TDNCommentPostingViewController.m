@@ -67,6 +67,7 @@
     self.comment.layer.cornerRadius = 8.0;
     self.comment.layer.masksToBounds = YES;
     
+    // Register for notifications when the keyboard is shown or hidden
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
@@ -99,6 +100,7 @@
                      completion:nil];
 }
 
+// When text in any of the fields changes, disable the post button if any field does not contain text
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
     if ([self.name.text isEqualToString:@""] ||
         [self.email.text isEqualToString:@""] ||
@@ -130,14 +132,16 @@
 }
 
 - (void)postComment:(id)sender {
-    
+    // Store the name and email to autofill in the future
     [[NSUserDefaults standardUserDefaults] setObject:self.name.text forKey:@"commentsName"];
     [[NSUserDefaults standardUserDefaults] setObject:self.email.text forKey:@"commentsEmail"];
     
+    // Perform basic URL escaping on text before POSTing it to the server
     CFStringRef escapedEmail = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.email.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
     CFStringRef escapedName = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.name.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
     CFStringRef escapedComment = CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self.comment.text, NULL, CFSTR(":/?#[]@!$ &'()*+,;=\"<>%{}|\\^~`"), kCFStringEncodingUTF8);
     
+    // Construct the POST string
     NSString *post = [NSString stringWithFormat:@"author=%@&email=%@&comment=%@&comment_post_ID=%ld&comment_parent=0&akismet_comment_nonce=%@", escapedName, escapedEmail, escapedComment, (long)self.article.postID, self.nonce];
     
     CFRelease(escapedComment);
@@ -148,6 +152,7 @@
     
     NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
     
+    // Set up a POST request of the comments form
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:@"http://dailynexus.com/wp-comments-post.php"]];
     [request setHTTPMethod:@"POST"];
@@ -155,9 +160,11 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:postData];
     
+    // Asynchronously send the request
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               // If we get a response, assume the comment was posted and dismiss ourselves; otherwise, present an error
                                if (data) {
                                    [self dismissViewControllerAnimated:YES completion:nil];
                                } else {
